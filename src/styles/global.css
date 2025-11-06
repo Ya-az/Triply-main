@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply font-sans bg-triply-sand text-triply-slate antialiased;
+  }
+
+  ::selection {
+    background-color: rgba(213, 156, 86, 0.25);
+    color: #0f5b4a;
+  }
+}
+
+@layer components {
+  .glass-panel {
+    @apply bg-white/70 backdrop-blur-xl border border-white/40 shadow-soft rounded-2xl;
+  }
+
+  .section-padding {
+    @apply py-16 md:py-22;
+  }
+
+  .heading-gradient {
+    @apply bg-gradient-to-l from-triply-accent via-triply-teal to-triply-dark bg-clip-text text-transparent;
+  }
+}
