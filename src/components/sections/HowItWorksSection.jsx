@@ -1,3 +1,5 @@
+import { useStaggeredReveal } from '../../hooks/useScrollReveal.js';
+
 function HowItWorksSection() {
   const steps = [
     {
@@ -32,6 +34,11 @@ function HowItWorksSection() {
     }
   ];
 
+  const { ref: stepsRef, visibleItems } = useStaggeredReveal(steps.length, {
+    threshold: 0.2,
+    staggerDelay: 200
+  });
+
   return (
     <section id="how-it-works" className="section-padding relative bg-gradient-to-b from-white via-triply-mint/5 to-white dark:from-dark-bg dark:via-dark-surface/30 dark:to-dark-bg">
       <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
@@ -50,11 +57,11 @@ function HowItWorksSection() {
           </p>
         </div>
 
-        <div className="grid gap-6 sm:gap-8 md:grid-cols-3">
+        <div ref={stepsRef} className="grid gap-6 sm:gap-8 md:grid-cols-3">
           {steps.map((step, index) => (
             <div
               key={step.id}
-              className="group relative"
+              className={`group relative ${visibleItems.has(index) ? 'reveal-fade-up' : 'reveal'}`}
             >
               {/* Connector line */}
               {index < steps.length - 1 && (

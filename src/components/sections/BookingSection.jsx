@@ -5,6 +5,7 @@ import { bookingServices, budgetLevels, bookingDestinations } from '../../data/b
 import { formHelpers } from '../../data/formHelpers.js';
 import { FormHelper } from '../ui/FormHelper.jsx';
 import { BookingProgressIndicator } from '../BookingProgressIndicator.jsx';
+import { useScrollReveal } from '../../hooks/useScrollReveal.js';
 
 const STORAGE_KEY = 'triply-booking-preferences';
 
@@ -16,6 +17,9 @@ function BookingSection() {
   const [feedback, setFeedback] = useState(null);
   const [hasSavedPreferences, setHasSavedPreferences] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
+
+  const { ref: headerRef, isVisible: headerVisible } = useScrollReveal({ threshold: 0.2 });
+  const { ref: formRef, isVisible: formVisible } = useScrollReveal({ threshold: 0.1 });
 
   useEffect(() => {
     try {
@@ -120,7 +124,7 @@ function BookingSection() {
       </div>
 
       <div className="relative mx-auto max-w-5xl px-6 text-right">
-        <div className="mb-12 space-y-4 text-center">
+        <div ref={headerRef} className={`mb-12 space-y-4 text-center ${headerVisible ? 'reveal-fade-down' : 'reveal'}`}>
           <span className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-triply-mint to-triply-teal dark:from-triply-teal dark:to-triply-mint px-5 py-2 text-sm font-semibold text-white shadow-lg">
             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
               <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z" />
@@ -165,8 +169,9 @@ function BookingSection() {
         </div>
 
         <form
+          ref={formRef}
           onSubmit={handleSubmit}
-          className="space-y-8 rounded-3xl border-2 border-triply-mint/40 dark:border-dark-border/50 bg-white/95 dark:bg-dark-elevated/80 backdrop-blur-xl p-6 sm:p-8 md:p-10 shadow-2xl hover:shadow-3xl transition-shadow duration-300"
+          className={`space-y-8 rounded-3xl border-2 border-triply-mint/40 dark:border-dark-border/50 bg-white/95 dark:bg-dark-elevated/80 backdrop-blur-xl p-6 sm:p-8 md:p-10 shadow-2xl hover:shadow-3xl transition-shadow duration-300 ${formVisible ? 'reveal-scale' : 'reveal'}`}
         >
           <FeedbackToast
             message={feedback?.message}
@@ -185,12 +190,13 @@ function BookingSection() {
             <select
               value={selectedDestination}
               onChange={(e) => setSelectedDestination(e.target.value)}
-              className="w-full rounded-xl border-2 border-triply-mint/40 dark:border-dark-border/50 bg-gradient-to-br from-triply-sand/10 to-white dark:from-dark-surface/40 dark:to-dark-elevated/60 px-5 py-4 text-right text-base text-triply-dark dark:text-dark-text-primary shadow-md transition-all duration-200 hover:border-triply dark:hover:border-triply-mint focus:border-triply dark:focus:border-triply-mint focus:bg-white dark:focus:bg-dark-elevated focus:outline-none focus:ring-4 focus:ring-triply/10 dark:focus:ring-triply-mint/20 focus:scale-[1.01]"
+              className="w-full rounded-xl border-2 border-triply-mint/40 dark:border-dark-border/50 bg-white dark:!bg-dark-surface px-5 py-4 pr-12 text-right text-base font-medium text-triply-dark dark:!text-dark-text-primary shadow-md transition-all duration-200 hover:border-triply dark:hover:border-triply-mint focus:border-triply dark:focus:border-triply-mint focus:bg-white dark:focus:!bg-dark-surface focus:outline-none focus:ring-4 focus:ring-triply/10 dark:focus:ring-triply-mint/20 appearance-none bg-[url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2212%22%20height%3D%228%22%20viewBox%3D%220%200%2012%208%22%3E%3Cpath%20fill%3D%22%230f5b4a%22%20d%3D%22M6%208L0%200h12z%22%2F%3E%3C%2Fsvg%3E')] dark:bg-[url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2212%22%20height%3D%228%22%20viewBox%3D%220%200%2012%208%22%3E%3Cpath%20fill%3D%22%2371d4c1%22%20d%3D%22M6%208L0%200h12z%22%2F%3E%3C%2Fsvg%3E')] bg-[position:left_1.25rem_center] bg-no-repeat"
               required
+              style={{ colorScheme: 'dark' }}
             >
-              <option value="">{formHelpers.booking.destination.placeholder}</option>
+              <option value="" className="bg-white dark:bg-dark-surface text-triply-dark dark:text-dark-text-primary">{formHelpers.booking.destination.placeholder}</option>
               {bookingDestinations.map((dest) => (
-                <option key={dest} value={dest}>
+                <option key={dest} value={dest} className="bg-white dark:bg-dark-surface text-triply-dark dark:text-dark-text-primary">
                   {dest}
                 </option>
               ))}

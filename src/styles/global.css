@@ -39,6 +39,82 @@
   .animate-slideDown {
     animation: slideDown 0.4s ease-out;
   }
+
+  /* Scroll Reveal Animations */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes fadeInRight {
+    from {
+      opacity: 0;
+      transform: translateX(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes slideInUp {
+    from {
+      opacity: 0;
+      transform: translateY(60px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 }
 
 @layer components {
@@ -73,5 +149,86 @@
   .dark .card-surface {
     @apply bg-dark-surface/80 border-dark-border/50 shadow-soft-dark hover:shadow-ambient-dark;
   }
-}
 
+  /* Scroll Reveal Classes */
+  .reveal {
+    opacity: 0;
+    transition: all 0.6s ease-out;
+  }
+
+  .reveal-visible {
+    opacity: 1;
+  }
+
+  .reveal-fade-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+  }
+
+  .reveal-fade-down {
+    animation: fadeInDown 0.8s ease-out forwards;
+  }
+
+  .reveal-fade-left {
+    animation: fadeInLeft 0.8s ease-out forwards;
+  }
+
+  .reveal-fade-right {
+    animation: fadeInRight 0.8s ease-out forwards;
+  }
+
+  .reveal-fade {
+    animation: fadeIn 0.8s ease-out forwards;
+  }
+
+  .reveal-scale {
+    animation: scaleIn 0.8s ease-out forwards;
+  }
+
+  .reveal-slide-up {
+    animation: slideInUp 1s ease-out forwards;
+  }
+
+  /* Fix select and option colors in dark mode */
+  .dark select {
+    color-scheme: dark;
+    background-color: #1a2332 !important;
+    color: #e8f2f0 !important;
+  }
+
+  .dark select option {
+    background: linear-gradient(to bottom, #1a2332 0%, #1a2332 100%) !important;
+    color: #e8f2f0 !important;
+  }
+
+  .dark select:focus {
+    background-color: #1a2332 !important;
+  }
+
+  /* Light mode - ensure white background */
+  select {
+    background-color: white;
+  }
+
+  select option {
+    background: linear-gradient(to bottom, white 0%, white 100%);
+    color: #2c3e3a;
+  }
+
+  /* Better styling for select dropdown */
+  select::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  select::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+  }
+
+  select::-webkit-scrollbar-thumb {
+    background: #0f5b4a;
+    border-radius: 4px;
+  }
+
+  .dark select::-webkit-scrollbar-thumb {
+    background: #71d4c1;
+  }
+}
