@@ -4,6 +4,18 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Triply | رحلاتك بتنظيم أنيق</title>
+		<script>
+			// Redirect to built site when hosted on GitHub Pages from branch root
+			(function () {
+				var isGithub = /\.github\.io$/.test(location.hostname);
+				var repoPath = '/triply-website';
+				// If this file is being served at the repo root on GitHub Pages,
+				// redirect to the docs/ folder which contains the built site.
+				if (isGithub && location.pathname === repoPath + '/' ) {
+					location.replace(repoPath + '/docs/');
+				}
+			})();
+		</script>
 		<link rel="icon" type="image/svg+xml" href="/src/assets/logo-triply.svg" />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
