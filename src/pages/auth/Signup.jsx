@@ -4,6 +4,7 @@ import { AuthLayout } from '../../layouts/AuthLayout.jsx';
 import { InputField } from '../../components/ui/InputField.jsx';
 import { GoogleButton } from '../../components/ui/GoogleButton.jsx';
 import { GlassButton } from '../../components/ui/GlassButton.jsx';
+import { FeedbackToast } from '../../components/ui/FeedbackToast.jsx';
 
 function Signup() {
   const navigate = useNavigate();
@@ -14,6 +15,8 @@ function Signup() {
     confirmPassword: ''
   });
   const [errors, setErrors] = useState({});
+  const [status, setStatus] = useState(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -62,29 +65,40 @@ function Signup() {
     e.preventDefault();
     
     if (!validateForm()) {
+      setStatus({ type: 'error', message: 'يرجى مراجعة الحقول المظللة باللون الأحمر' });
       return;
     }
 
-    // Simulate signup - in real app, this would call an API
-    // Save to localStorage
-    localStorage.setItem('username', formData.fullName);
-    localStorage.setItem('userEmail', formData.email);
-    localStorage.setItem('isLoggedIn', 'true');
-    
-    // Show success message
-    alert(`مرحباً ${formData.fullName}! تم إنشاء حسابك بنجاح`);
-    
-    // Redirect to home page
-    navigate('/');
+    setIsSubmitting(true);
+    setStatus(null);
+
+    window.setTimeout(() => {
+      localStorage.setItem('username', formData.fullName);
+      localStorage.setItem('userEmail', formData.email);
+      localStorage.setItem('isLoggedIn', 'true');
+      setIsSubmitting(false);
+      setStatus({ type: 'success', message: `مرحباً ${formData.fullName}! تم إنشاء حسابك بنجاح.` });
+      window.setTimeout(() => {
+        navigate('/');
+      }, 600);
+    }, 1400);
   };
 
   const handleGoogleSignup = () => {
     // Google OAuth integration placeholder
-    // Simulate Google signup
-    const username = 'مستخدم Google';
-    localStorage.setItem('username', username);
-    localStorage.setItem('isLoggedIn', 'true');
-    navigate('/');
+    setIsSubmitting(true);
+    setStatus(null);
+
+    window.setTimeout(() => {
+      const username = 'مستخدم Google';
+      localStorage.setItem('username', username);
+      localStorage.setItem('isLoggedIn', 'true');
+      setIsSubmitting(false);
+      setStatus({ type: 'success', message: 'تم إنشاء حسابك عبر Google بنجاح.' });
+      window.setTimeout(() => {
+        navigate('/');
+      }, 600);
+    }, 1100);
   };
 
   return (
@@ -92,12 +106,18 @@ function Signup() {
       <div className="space-y-6">
         {/* Header */}
         <div className="text-center">
-          <h1 className="mb-2 font-display text-3xl font-bold text-white">أنشئ حساب Triply</h1>
-          <p className="text-white/70">ابدأ رحلتك معنا اليوم</p>
+          <h1 className="mb-2 font-display text-3xl font-bold text-triply-dark dark:text-dark-text-primary">أنشئ حساب Triply</h1>
+          <p className="text-triply-slate/70 dark:text-dark-text-secondary">ابدأ رحلتك معنا اليوم</p>
         </div>
 
+        <FeedbackToast
+          message={status?.message}
+          variant={status?.type === 'error' ? 'error' : 'success'}
+          onDismiss={() => setStatus(null)}
+        />
+
         {/* Form */}
-        <form onSubmit={handleSubmit} className="space-y-5">
+        <form onSubmit={handleSubmit} className="space-y-5" noValidate>
           <div>
             <InputField
               label="الاسم الكامل"
@@ -107,6 +127,7 @@ function Signup() {
               value={formData.fullName}
               onChange={handleChange}
               required
+              error={errors.fullName}
               icon={
                 <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path
@@ -118,9 +139,6 @@ function Signup() {
                 </svg>
               }
             />
-            {errors.fullName && (
-              <p className="mt-1 text-sm text-red-300">{errors.fullName}</p>
-            )}
           </div>
 
           <div>
@@ -132,6 +150,7 @@ function Signup() {
               value={formData.email}
               onChange={handleChange}
               required
+              error={errors.email}
               icon={
                 <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path
@@ -143,9 +162,6 @@ function Signup() {
                 </svg>
               }
             />
-            {errors.email && (
-              <p className="mt-1 text-sm text-red-300">{errors.email}</p>
-            )}
           </div>
 
           <div>
@@ -157,6 +173,7 @@ function Signup() {
               value={formData.password}
               onChange={handleChange}
               required
+              error={errors.password}
               icon={
                 <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path
@@ -168,9 +185,6 @@ function Signup() {
                 </svg>
               }
             />
-            {errors.password && (
-              <p className="mt-1 text-sm text-red-300">{errors.password}</p>
-            )}
           </div>
 
           <div>
@@ -182,6 +196,7 @@ function Signup() {
               value={formData.confirmPassword}
               onChange={handleChange}
               required
+              error={errors.confirmPassword}
               icon={
                 <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path
@@ -193,13 +208,10 @@ function Signup() {
                 </svg>
               }
             />
-            {errors.confirmPassword && (
-              <p className="mt-1 text-sm text-red-300">{errors.confirmPassword}</p>
-            )}
           </div>
 
           {/* Submit button */}
-          <GlassButton type="submit" variant="primary" className="w-full" size="lg">
+          <GlassButton type="submit" variant="primary" className="w-full" size="lg" isLoading={isSubmitting}>
             إنشاء الحساب
           </GlassButton>
         </form>
@@ -207,20 +219,20 @@ function Signup() {
         {/* Divider */}
         <div className="relative">
           <div className="absolute inset-0 flex items-center">
-            <div className="w-full border-t border-white/20" />
+            <div className="w-full border-t border-triply-mint/30 dark:border-dark-border/30" />
           </div>
           <div className="relative flex justify-center text-sm">
-            <span className="bg-transparent px-4 text-white/60">أو سجل باستخدام</span>
+            <span className="bg-white dark:bg-dark-elevated px-4 text-triply-slate/60 dark:text-dark-text-secondary">أو سجل باستخدام</span>
           </div>
         </div>
 
         {/* Google signup */}
-        <GoogleButton label="التسجيل باستخدام Google" onClick={handleGoogleSignup} />
+  <GoogleButton label="التسجيل باستخدام Google" onClick={handleGoogleSignup} disabled={isSubmitting} />
 
         {/* Login link */}
-        <p className="text-center text-sm text-white/70">
+        <p className="text-center text-sm text-triply-slate/70 dark:text-dark-text-secondary">
           لديك حساب بالفعل؟{' '}
-          <Link to="/login" className="font-medium text-triply-mint hover:text-white transition-colors">
+          <Link to="/login" className="font-medium text-triply dark:text-triply-mint hover:text-triply-teal dark:hover:text-triply-accentLight transition-colors">
             سجل الدخول
           </Link>
         </p>

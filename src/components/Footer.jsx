@@ -27,16 +27,16 @@ const iconMap = {
 
 function Footer() {
   return (
-    <footer className="relative mt-24 bg-triply-dark text-white">
-      <div className="absolute inset-0 bg-soft-mesh opacity-80" aria-hidden="true" />
+    <footer className="relative mt-24 bg-triply-dark dark:bg-dark-elevated text-white dark:text-dark-text-primary">
+      <div className="absolute inset-0 bg-soft-mesh opacity-80 dark:opacity-40" aria-hidden="true" />
       <div className="relative mx-auto flex max-w-6xl flex-col gap-12 px-6 py-16">
         <div className="grid gap-10 md:grid-cols-[1.4fr_repeat(3,1fr)]">
           <div className="space-y-6">
             <div className="flex items-center gap-3">
-              <img src={logo} alt="شعار Triply" className="h-12 w-12 rounded-xl bg-white/10 p-2" />
+              <img src={logo} alt="شعار Triply" className="h-12 w-12 rounded-xl bg-white/10 dark:bg-dark-surface/60 p-2" />
               <div>
                 <h3 className="font-display text-2xl font-semibold">Triply</h3>
-                <p className="text-sm text-white/70">رحلات متكاملة بتجربة تعليمية تفاعلية ترتقي بمسارك المهني والسياحي.</p>
+                <p className="text-sm text-white/70 dark:text-dark-text-secondary">رحلات متكاملة بتجربة تعليمية تفاعلية ترتقي بمسارك المهني والسياحي.</p>
               </div>
             </div>
             <div className="flex flex-wrap gap-3">
@@ -52,7 +52,7 @@ function Footer() {
                 <a
                   key={link.label}
                   href={link.href}
-                  className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white transition hover:border-triply-mint/60 hover:bg-triply-mint/20"
+                  className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/20 dark:border-dark-border/40 bg-white/10 dark:bg-dark-surface/40 text-white dark:text-dark-text-primary transition hover:border-triply-mint/60 hover:bg-triply-mint/20 dark:hover:bg-triply-mint/30"
                   aria-label={link.label}
                 >
                   {iconMap[link.icon]}
@@ -62,11 +62,11 @@ function Footer() {
           </div>
 
           <div>
-            <h4 className="mb-4 text-lg font-semibold text-white">المصادر</h4>
-            <ul className="space-y-2 text-sm text-white/70">
+            <h4 className="mb-4 text-lg font-semibold text-white dark:text-dark-text-primary">المصادر</h4>
+            <ul className="space-y-2 text-sm text-white/70 dark:text-dark-text-secondary">
               {resourceLinks.map((link) => (
                 <li key={link.label}>
-                  <a className="transition hover:text-white" href={link.href}>
+                  <a className="transition hover:text-white dark:hover:text-dark-text-primary" href={link.href}>
                     {link.label}
                   </a>
                 </li>
@@ -75,11 +75,11 @@ function Footer() {
           </div>
 
           <div>
-            <h4 className="mb-4 text-lg font-semibold text-white">روابط سريعة</h4>
-            <ul className="space-y-2 text-sm text-white/70">
+            <h4 className="mb-4 text-lg font-semibold text-white dark:text-dark-text-primary">روابط سريعة</h4>
+            <ul className="space-y-2 text-sm text-white/70 dark:text-dark-text-secondary">
               {supportLinks.map((link) => (
                 <li key={link.label}>
-                  <a className="transition hover:text-white" href={link.href}>
+                  <a className="transition hover:text-white dark:hover:text-dark-text-primary" href={link.href}>
                     {link.label}
                   </a>
                 </li>
@@ -88,8 +88,8 @@ function Footer() {
           </div>
 
           <div>
-            <h4 className="mb-4 text-lg font-semibold text-white">تواصل معنا</h4>
-            <ul className="space-y-2 text-sm text-white/70">
+            <h4 className="mb-4 text-lg font-semibold text-white dark:text-dark-text-primary">تواصل معنا</h4>
+            <ul className="space-y-2 text-sm text-white/70 dark:text-dark-text-secondary">
               <li>البريد: contact@triply.com</li>
               <li>الهاتف: +966 50 123 4567</li>
               <li>العنوان: جدة - المملكة العربية السعودية</li>
@@ -97,7 +97,7 @@ function Footer() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-3 border-t border-white/15 pt-6 text-sm text-white/70 md:flex-row md:items-center md:justify-between">
+        <div className="flex flex-col gap-3 border-t border-white/15 dark:border-dark-border/30 pt-6 text-sm text-white/70 dark:text-dark-text-secondary md:flex-row md:items-center md:justify-between">
           <p>© {new Date().getFullYear()} Triply. جميع الحقوق محفوظة.</p>
           <p>صنع بحب في المملكة العربية السعودية ❤️</p>
         </div>

@@ -8,25 +8,70 @@
   }
 
   body {
-    @apply font-sans bg-triply-sand text-triply-slate antialiased;
+    @apply font-sans bg-triply-sand text-triply-slate antialiased transition-colors duration-300;
+  }
+
+  .dark body {
+    @apply bg-dark-bg text-dark-text-primary;
   }
 
   ::selection {
     background-color: rgba(213, 156, 86, 0.25);
     color: #0f5b4a;
   }
+
+  .dark ::selection {
+    background-color: rgba(213, 156, 86, 0.4);
+    color: #e8f2f0;
+  }
+
+  @keyframes slideDown {
+    from {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  .animate-slideDown {
+    animation: slideDown 0.4s ease-out;
+  }
 }
 
 @layer components {
   .glass-panel {
-    @apply bg-white/70 backdrop-blur-xl border border-white/40 shadow-soft rounded-2xl;
+    @apply bg-white/70 backdrop-blur-xl border border-white/40 shadow-soft rounded-2xl transition-all duration-300;
+  }
+
+  .dark .glass-panel {
+    @apply bg-dark-elevated/60 border-dark-border/40 shadow-soft-dark;
   }
 
   .section-padding {
     @apply py-16 md:py-22;
   }
 
+  .section-wrapper {
+    @apply mx-auto max-w-6xl px-6;
+  }
+
   .heading-gradient {
     @apply bg-gradient-to-l from-triply-accent via-triply-teal to-triply-dark bg-clip-text text-transparent;
   }
+
+  .dark .heading-gradient {
+    @apply from-triply-accentLight via-triply-mint to-triply-light;
+  }
+
+  .card-surface {
+    @apply bg-white/80 border border-triply-mint/30 rounded-2xl shadow-soft hover:shadow-ambient transition-all duration-300;
+  }
+
+  .dark .card-surface {
+    @apply bg-dark-surface/80 border-dark-border/50 shadow-soft-dark hover:shadow-ambient-dark;
+  }
 }
+

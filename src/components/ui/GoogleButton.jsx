@@ -21,12 +21,13 @@ const GoogleIcon = () => (
   </svg>
 );
 
-function GoogleButton({ label = 'Continue with Google', onClick }) {
+function GoogleButton({ label = 'Continue with Google', onClick, disabled = false }) {
   return (
     <button
       type="button"
       onClick={onClick}
-      className="flex w-full items-center justify-center gap-3 rounded-xl border border-white/40 bg-white/10 px-6 py-3 text-white backdrop-blur-md transition-all duration-200 hover:bg-white hover:text-gray-900 hover:shadow-lg hover:shadow-white/10"
+      disabled={disabled}
+  className="flex w-full items-center justify-center gap-3 rounded-xl border-2 border-triply-mint/40 dark:border-dark-border/60 bg-white dark:bg-dark-elevated/50 px-6 py-3 text-triply-dark dark:text-dark-text-primary shadow-sm transition-all duration-200 hover:bg-triply-mint/10 dark:hover:bg-dark-elevated hover:border-triply dark:hover:border-triply-mint hover:shadow-lg disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:bg-white dark:disabled:hover:bg-dark-elevated/50 disabled:hover:border-triply-mint/40 dark:disabled:hover:border-dark-border/60 disabled:hover:shadow-sm"
     >
       <GoogleIcon />
       <span className="font-medium">{label}</span>
@@ -36,7 +37,8 @@ function GoogleButton({ label = 'Continue with Google', onClick }) {
 
 GoogleButton.propTypes = {
   label: PropTypes.string,
-  onClick: PropTypes.func
+  onClick: PropTypes.func,
+  disabled: PropTypes.bool
 };
 
 export { GoogleButton };
