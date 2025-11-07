@@ -108,20 +108,20 @@ function TestimonialsSection() {
           {/* Navigation Buttons */}
           <button
             onClick={goToPrevious}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-12 flex h-12 w-12 items-center justify-center rounded-full bg-white dark:bg-dark-elevated border-2 border-triply-mint/40 dark:border-dark-border text-triply-dark dark:text-dark-text-primary shadow-lg hover:bg-triply-mint/20 dark:hover:bg-dark-surface hover:scale-110 transition-all duration-200"
+            className="absolute left-2 sm:left-0 top-1/2 -translate-y-1/2 sm:-translate-x-4 md:-translate-x-12 flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full bg-white dark:bg-dark-elevated border-2 border-triply-mint/40 dark:border-dark-border text-triply-dark dark:text-dark-text-primary shadow-lg hover:bg-triply-mint/20 dark:hover:bg-dark-surface hover:scale-110 transition-all duration-200 z-10"
             aria-label="الشهادة السابقة"
           >
-            <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg className="h-5 w-5 sm:h-6 sm:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </svg>
           </button>
 
           <button
             onClick={goToNext}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-12 flex h-12 w-12 items-center justify-center rounded-full bg-white dark:bg-dark-elevated border-2 border-triply-mint/40 dark:border-dark-border text-triply-dark dark:text-dark-text-primary shadow-lg hover:bg-triply-mint/20 dark:hover:bg-dark-surface hover:scale-110 transition-all duration-200"
+            className="absolute right-2 sm:right-0 top-1/2 -translate-y-1/2 sm:translate-x-4 md:translate-x-12 flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full bg-white dark:bg-dark-elevated border-2 border-triply-mint/40 dark:border-dark-border text-triply-dark dark:text-dark-text-primary shadow-lg hover:bg-triply-mint/20 dark:hover:bg-dark-surface hover:scale-110 transition-all duration-200 z-10"
             aria-label="الشهادة التالية"
           >
-            <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg className="h-5 w-5 sm:h-6 sm:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
           </button>

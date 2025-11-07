@@ -13,41 +13,41 @@ function HeroSection() {
             <span className="inline-flex items-center gap-2 rounded-full bg-white/15 dark:bg-dark-elevated/60 px-4 py-1 text-sm font-medium shadow-soft dark:shadow-soft-dark">
               أحدث الحلول الذكية للسفر
             </span>
-            <h1 className="font-display text-4xl leading-snug md:text-5xl">
+            <h1 className="font-display text-3xl leading-snug sm:text-4xl md:text-5xl">
               رحلات متكاملة تبدأ من فكرة وتصل إلى تجربة لا تُنسى
             </h1>
-            <p className="max-w-xl text-base leading-8 text-white/80 dark:text-dark-text-secondary">
+            <p className="max-w-xl text-sm sm:text-base leading-7 sm:leading-8 text-white/80 dark:text-dark-text-secondary">
               Triply توفر لك تخطيطاً ذكياً للرحلة من اختيار الوجهة وحتى عودة المسافرين. فريق متخصص، محتوى عربي ثري،
               ودعم فوري على مدار الساعة.
             </p>
-            <div className="flex flex-wrap justify-end gap-4">
-              <a href="#booking">
-                <GlassButton variant="primary" size="lg">
+            <div className="flex flex-col sm:flex-row flex-wrap justify-end gap-3 sm:gap-4">
+              <a href="#booking" className="w-full sm:w-auto">
+                <GlassButton variant="primary" size="lg" className="w-full sm:w-auto">
                   احجز استشارتك المجانية
                 </GlassButton>
               </a>
-              <a href="#services">
-                <GlassButton variant="glass" size="lg">
+              <a href="#services" className="w-full sm:w-auto">
+                <GlassButton variant="glass" size="lg" className="w-full sm:w-auto">
                   تعرف على المنصة
                 </GlassButton>
               </a>
             </div>
-            <dl className="mt-8 grid grid-cols-2 gap-6 text-sm text-white/80 dark:text-dark-text-secondary md:grid-cols-4">
+            <dl className="mt-8 grid grid-cols-2 gap-4 sm:gap-6 text-xs sm:text-sm text-white/80 dark:text-dark-text-secondary md:grid-cols-4">
               <div>
-                <dt className="font-semibold text-white dark:text-dark-text-primary">+1200 رحلة ناجحة</dt>
-                <dd>منذ 2019</dd>
+                <dt className="font-semibold text-white dark:text-dark-text-primary text-sm sm:text-base">+1200 رحلة</dt>
+                <dd className="text-xs sm:text-sm">منذ 2019</dd>
               </div>
               <div>
-                <dt className="font-semibold text-white dark:text-dark-text-primary">+300 شريك عالمي</dt>
-                <dd>فنادق وطيران</dd>
+                <dt className="font-semibold text-white dark:text-dark-text-primary text-sm sm:text-base">+300 شريك</dt>
+                <dd className="text-xs sm:text-sm">فنادق وطيران</dd>
               </div>
               <div>
-                <dt className="font-semibold text-white dark:text-dark-text-primary">+95% رضا العملاء</dt>
-                <dd>تقييم 4.9/5</dd>
+                <dt className="font-semibold text-white dark:text-dark-text-primary text-sm sm:text-base">+95% رضا</dt>
+                <dd className="text-xs sm:text-sm">تقييم 4.9/5</dd>
               </div>
               <div>
-                <dt className="font-semibold text-white dark:text-dark-text-primary">24/7 دعم مباشر</dt>
-                <dd>مستشار رحلات</dd>
+                <dt className="font-semibold text-white dark:text-dark-text-primary text-sm sm:text-base">24/7 دعم</dt>
+                <dd className="text-xs sm:text-sm">مستشار رحلات</dd>
               </div>
             </dl>
           </div>

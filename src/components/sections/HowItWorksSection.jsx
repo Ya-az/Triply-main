@@ -41,16 +41,16 @@ function HowItWorksSection() {
 
       <div className="relative mx-auto max-w-6xl px-6 text-right">
         <div className="mb-12 space-y-4 text-center">
-          <span className="heading-gradient text-sm font-medium">كيف يعمل Triply</span>
-          <h2 className="font-display text-3xl text-triply-dark dark:text-dark-text-primary md:text-4xl">
+          <span className="heading-gradient text-xs sm:text-sm font-medium">كيف يعمل Triply</span>
+          <h2 className="font-display text-2xl sm:text-3xl text-triply-dark dark:text-dark-text-primary md:text-4xl">
             ثلاث خطوات بسيطة لرحلة أحلامك
           </h2>
-          <p className="mx-auto max-w-2xl text-base leading-7 text-triply-slate/75 dark:text-dark-text-secondary">
+          <p className="mx-auto max-w-2xl text-sm sm:text-base leading-6 sm:leading-7 text-triply-slate/75 dark:text-dark-text-secondary px-4">
             نجعل تخطيط رحلتك سهلاً وممتعاً من خلال عملية بسيطة ومباشرة
           </p>
         </div>
 
-        <div className="grid gap-8 md:grid-cols-3">
+        <div className="grid gap-6 sm:gap-8 md:grid-cols-3">
           {steps.map((step, index) => (
             <div
               key={step.id}
@@ -61,22 +61,22 @@ function HowItWorksSection() {
                 <div className="hidden md:block absolute top-16 -left-4 w-8 h-0.5 bg-gradient-to-l from-triply-mint to-triply-teal dark:from-triply-teal dark:to-triply-mint opacity-30" />
               )}
 
-              <div className="card-surface relative overflow-hidden p-8 text-center transition-all duration-300 hover:-translate-y-2">
+              <div className="card-surface relative overflow-hidden p-6 sm:p-8 text-center transition-all duration-300 hover:-translate-y-2">
                 {/* Step number badge */}
-                <div className="absolute top-4 left-4 flex h-8 w-8 items-center justify-center rounded-full bg-triply-mint/20 dark:bg-triply-teal/20 text-sm font-bold text-triply dark:text-triply-mint">
+                <div className="absolute top-3 sm:top-4 left-3 sm:left-4 flex h-7 w-7 sm:h-8 sm:w-8 items-center justify-center rounded-full bg-triply-mint/20 dark:bg-triply-teal/20 text-xs sm:text-sm font-bold text-triply dark:text-triply-mint">
                   {step.id}
                 </div>
 
                 {/* Icon */}
-                <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-2xl bg-gradient-to-br from-triply-mint/40 to-triply-teal/40 dark:from-triply-teal/30 dark:to-triply-mint/30 text-triply dark:text-triply-mint shadow-glow dark:shadow-glow-dark transition-all duration-300 group-hover:scale-110">
+                <div className="mx-auto mb-4 sm:mb-6 flex h-16 w-16 sm:h-20 sm:w-20 items-center justify-center rounded-2xl bg-gradient-to-br from-triply-mint/40 to-triply-teal/40 dark:from-triply-teal/30 dark:to-triply-mint/30 text-triply dark:text-triply-mint shadow-glow dark:shadow-glow-dark transition-all duration-300 group-hover:scale-110">
                   {step.icon}
                 </div>
 
                 {/* Content */}
-                <h3 className="mb-3 font-display text-xl font-semibold text-triply-dark dark:text-dark-text-primary">
+                <h3 className="mb-2 sm:mb-3 font-display text-lg sm:text-xl font-semibold text-triply-dark dark:text-dark-text-primary">
                   {step.title}
                 </h3>
-                <p className="text-sm leading-6 text-triply-slate/75 dark:text-dark-text-secondary">
+                <p className="text-xs sm:text-sm leading-5 sm:leading-6 text-triply-slate/75 dark:text-dark-text-secondary">
                   {step.description}
                 </p>
 
@@ -88,13 +88,13 @@ function HowItWorksSection() {
         </div>
 
         {/* CTA */}
-        <div className="mt-12 text-center">
+        <div className="mt-10 sm:mt-12 text-center px-4">
           <a
             href="#booking"
-            className="inline-flex items-center gap-2 rounded-xl bg-triply dark:bg-triply-teal px-8 py-4 text-white dark:text-triply-dark font-semibold shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300"
+            className="inline-flex items-center gap-2 rounded-xl bg-triply dark:bg-triply-teal px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base text-white dark:text-triply-dark font-semibold shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300"
           >
             ابدأ رحلتك الآن
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
             </svg>
           </a>

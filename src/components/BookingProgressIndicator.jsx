@@ -13,14 +13,14 @@ function BookingProgressIndicator({ currentStep = 1, steps }) {
     <div className="mb-8">
       <div className="mx-auto max-w-3xl">
         {/* Progress bar background */}
-        <div className="relative">
+        <div className="relative px-4 sm:px-0">
           {/* Connector line */}
-          <div className="absolute right-0 top-6 h-1 w-full bg-triply-mint/20 dark:bg-dark-border" aria-hidden="true" />
+          <div className="absolute right-4 sm:right-0 top-5 sm:top-6 h-1 w-[calc(100%-2rem)] sm:w-full bg-triply-mint/20 dark:bg-dark-border" aria-hidden="true" />
           
           {/* Active progress line */}
           <div
-            className="absolute right-0 top-6 h-1 bg-gradient-to-l from-triply to-triply-teal dark:from-triply-mint dark:to-triply-teal transition-all duration-500"
-            style={{ width: `${((currentStep - 1) / (stepsToUse.length - 1)) * 100}%` }}
+            className="absolute right-4 sm:right-0 top-5 sm:top-6 h-1 bg-gradient-to-l from-triply to-triply-teal dark:from-triply-mint dark:to-triply-teal transition-all duration-500"
+            style={{ width: `calc((100% - 2rem) * ${((currentStep - 1) / (stepsToUse.length - 1))} / 1)` }}
             aria-hidden="true"
           />
 
@@ -35,29 +35,29 @@ function BookingProgressIndicator({ currentStep = 1, steps }) {
                 <li key={step.id} className="flex flex-col items-center">
                   {/* Step circle */}
                   <div
-                    className={`flex h-12 w-12 items-center justify-center rounded-full border-4 transition-all duration-300 ${
+                    className={`flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full border-2 sm:border-4 transition-all duration-300 ${
                       isCompleted
                         ? 'border-triply dark:border-triply-mint bg-triply dark:bg-triply-mint text-white dark:text-dark-bg shadow-lg'
                         : isCurrent
-                        ? 'border-triply dark:border-triply-mint bg-white dark:bg-dark-elevated text-triply dark:text-triply-mint shadow-xl scale-110 ring-4 ring-triply/20 dark:ring-triply-mint/20'
+                        ? 'border-triply dark:border-triply-mint bg-white dark:bg-dark-elevated text-triply dark:text-triply-mint shadow-xl scale-110 ring-2 sm:ring-4 ring-triply/20 dark:ring-triply-mint/20'
                         : 'border-triply-mint/30 dark:border-dark-border bg-triply-sand/30 dark:bg-dark-surface text-triply-slate/50 dark:text-dark-text-secondary'
                     }`}
                   >
                     {isCompleted ? (
                       // Checkmark for completed steps
-                      <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <svg className="h-5 w-5 sm:h-6 sm:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                       </svg>
                     ) : (
                       // Step number
-                      <span className="text-lg font-bold">{step.id}</span>
+                      <span className="text-base sm:text-lg font-bold">{step.id}</span>
                     )}
                   </div>
 
                   {/* Step text */}
-                  <div className={`mt-3 text-center transition-all duration-300 ${index === 0 ? 'text-right' : index === stepsToUse.length - 1 ? 'text-left' : ''}`}>
+                  <div className={`mt-2 sm:mt-3 text-center transition-all duration-300 ${index === 0 ? 'text-right' : index === stepsToUse.length - 1 ? 'text-left' : ''}`}>
                     <div
-                      className={`text-sm font-semibold ${
+                      className={`text-xs sm:text-sm font-semibold ${
                         isCurrent
                           ? 'text-triply dark:text-triply-mint'
                           : isCompleted
@@ -67,14 +67,14 @@ function BookingProgressIndicator({ currentStep = 1, steps }) {
                     >
                       {step.name}
                     </div>
-                    <div className={`mt-1 text-xs ${isCurrent || isCompleted ? 'text-triply-slate/70 dark:text-dark-text-secondary' : 'text-triply-slate/50 dark:text-dark-text-secondary/70'}`}>
+                    <div className={`mt-0.5 sm:mt-1 text-[10px] sm:text-xs ${isCurrent || isCompleted ? 'text-triply-slate/70 dark:text-dark-text-secondary' : 'text-triply-slate/50 dark:text-dark-text-secondary/70'}`}>
                       {step.description}
                     </div>
                   </div>
 
                   {/* Pulse animation for current step */}
                   {isCurrent && (
-                    <div className="absolute top-0 h-12 w-12 animate-ping rounded-full bg-triply/20 dark:bg-triply-mint/20" aria-hidden="true" />
+                    <div className="absolute top-0 h-10 w-10 sm:h-12 sm:w-12 animate-ping rounded-full bg-triply/20 dark:bg-triply-mint/20" aria-hidden="true" />
                   )}
                 </li>
               );

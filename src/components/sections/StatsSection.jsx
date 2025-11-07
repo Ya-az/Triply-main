@@ -45,16 +45,16 @@ function StatsSection() {
       </div>
 
       <div className="relative mx-auto max-w-6xl px-6">
-        <div className="mb-12 text-center">
-          <h2 className="font-display text-3xl text-white dark:text-dark-text-primary md:text-4xl mb-4">
+        <div className="mb-10 sm:mb-12 text-center">
+          <h2 className="font-display text-2xl sm:text-3xl text-white dark:text-dark-text-primary md:text-4xl mb-3 sm:mb-4">
             أرقامنا تتحدث عن نفسها
           </h2>
-          <p className="text-white/80 dark:text-dark-text-secondary text-base leading-7">
+          <p className="text-white/80 dark:text-dark-text-secondary text-sm sm:text-base leading-6 sm:leading-7 px-4">
             نفخر بثقة عملائنا وشركائنا حول العالم
           </p>
         </div>
 
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-6 sm:gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {stats.map((stat, index) => (
             <StatCard
               key={stat.id}
@@ -99,7 +99,7 @@ function StatCard({ stat, isVisible, delay }) {
 
   return (
     <div
-      className="group relative overflow-hidden rounded-2xl bg-white/10 dark:bg-dark-elevated/40 backdrop-blur-md border border-white/20 dark:border-dark-border/30 p-8 text-center transition-all duration-500 hover:-translate-y-2 hover:bg-white/15 dark:hover:bg-dark-elevated/60 hover:shadow-2xl"
+      className="group relative overflow-hidden rounded-2xl bg-white/10 dark:bg-dark-elevated/40 backdrop-blur-md border border-white/20 dark:border-dark-border/30 p-6 sm:p-8 text-center transition-all duration-500 hover:-translate-y-2 hover:bg-white/15 dark:hover:bg-dark-elevated/60 hover:shadow-2xl"
       style={{
         opacity: isVisible ? 1 : 0,
         transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
@@ -107,16 +107,16 @@ function StatCard({ stat, isVisible, delay }) {
       }}
     >
       {/* Icon */}
-      <div className="mb-4 text-4xl">{stat.icon}</div>
+      <div className="mb-3 sm:mb-4 text-3xl sm:text-4xl">{stat.icon}</div>
 
       {/* Animated Number */}
-      <div className="mb-2 font-display text-4xl font-bold text-white dark:text-dark-text-primary md:text-5xl">
+      <div className="mb-2 font-display text-3xl sm:text-4xl font-bold text-white dark:text-dark-text-primary md:text-5xl">
         {count.toLocaleString('ar-SA')}
         <span className="text-triply-accentLight dark:text-triply-mint">{stat.suffix}</span>
       </div>
 
       {/* Label */}
-      <p className="text-sm font-medium text-white/80 dark:text-dark-text-secondary">
+      <p className="text-xs sm:text-sm font-medium text-white/80 dark:text-dark-text-secondary">
         {stat.label}
       </p>
 
