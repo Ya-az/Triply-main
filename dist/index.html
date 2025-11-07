@@ -4,6 +4,23 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Triply | رحلاتك بتنظيم أنيق</title>
+		<!-- Robust redirect for GitHub Pages: send any repo-root hit to /docs/ -->
+		<meta http-equiv="refresh" content="0; url=/triply-website/docs/" />
+		<script>
+			(function () {
+				var isGithub = /\.github\.io$/.test(location.hostname);
+				var repoPath = '/triply-website';
+				var inDocs = location.pathname.indexOf('/docs/') !== -1;
+				// Normalize pathname to ensure trailing slash comparison works
+				var path = location.pathname;
+				if (!/\/$/.test(path)) path += '/';
+				// If hosted on GitHub Pages for this repo and not already under /docs,
+				// redirect to the built site under /docs/ (covers /triply-website and /triply-website/index.html)
+				if (isGithub && path.indexOf(repoPath + '/') === 0 && !inDocs) {
+					location.replace(repoPath + '/docs/');
+				}
+			})();
+		</script>
 		<link rel="icon" type="image/svg+xml" href="./assets/logo-triply-B91wDxCa.svg" />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
