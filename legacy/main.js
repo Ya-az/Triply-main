@@ -1,5 +1,5 @@
 // ====================
-// Main Application Script
+// Main Application Script (Legacy)
 // ====================
 
 // تحديد الصفحة الحالية تلقائياً
@@ -13,7 +13,9 @@ function getCurrentPage() {
 document.addEventListener('DOMContentLoaded', function() {
     // تحميل المكونات القابلة لإعادة الاستخدام
     const currentPage = getCurrentPage();
-    initComponents(currentPage);
+    if (typeof initComponents === 'function') {
+      initComponents(currentPage);
+    }
     
     // معالجة نموذج الاتصال
     initContactForm();
@@ -88,25 +90,33 @@ function initAnimations() {
 
 // تحديث معلومات المستخدم
 function updateUserInfo(name, avatar) {
-    SiteConfig.user.name = name;
-    SiteConfig.user.avatar = avatar;
+    if (window.SiteConfig) {
+      SiteConfig.user.name = name;
+      SiteConfig.user.avatar = avatar;
+    }
     
     // إعادة تحميل الـ Header
     const currentPage = getCurrentPage();
-    initComponents(currentPage);
+    if (typeof initComponents === 'function') {
+      initComponents(currentPage);
+    }
 }
 
 // تحديث معلومات التواصل
 function updateContactInfo(email, phone, address) {
-    SiteConfig.contact.email = email;
-    SiteConfig.contact.phone = phone;
-    SiteConfig.contact.address = address;
+    if (window.SiteConfig) {
+      SiteConfig.contact.email = email;
+      SiteConfig.contact.phone = phone;
+      SiteConfig.contact.address = address;
+    }
     
     // إعادة تحميل الـ Footer
     const footerContainer = document.getElementById('footer-container');
-    if (footerContainer) {
+    if (footerContainer && typeof createFooter === 'function') {
         footerContainer.innerHTML = createFooter();
-        attachEventListeners();
+        if (typeof attachEventListeners === 'function') {
+          attachEventListeners();
+        }
     }
 }
 
