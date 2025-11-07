@@ -53,8 +53,6 @@ function Login() {
     }
 
     // Simulate login - in real app, this would call an API
-    console.log('Login data:', formData);
-    
     // Extract username from email
     const username = formData.email.split('@')[0];
     
@@ -71,9 +69,7 @@ function Login() {
   };
 
   const handleGoogleLogin = () => {
-    console.log('Google login clicked');
-    // TODO: Google OAuth integration
-    
+    // Google OAuth integration placeholder
     // Simulate Google login
     const username = 'مستخدم Google';
     localStorage.setItem('username', username);

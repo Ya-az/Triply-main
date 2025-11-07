@@ -66,8 +66,6 @@ function Signup() {
     }
 
     // Simulate signup - in real app, this would call an API
-    console.log('Signup data:', formData);
-    
     // Save to localStorage
     localStorage.setItem('username', formData.fullName);
     localStorage.setItem('userEmail', formData.email);
@@ -81,9 +79,7 @@ function Signup() {
   };
 
   const handleGoogleSignup = () => {
-    console.log('Google signup clicked');
-    // TODO: Google OAuth integration
-    
+    // Google OAuth integration placeholder
     // Simulate Google signup
     const username = 'مستخدم Google';
     localStorage.setItem('username', username);

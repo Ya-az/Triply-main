@@ -17,31 +17,42 @@ Triply_pjc/
 ├── postcss.config.js
 ├── tailwind.config.js
 ├── vite.config.js
+├── legacy/              # الملفات القديمة (أرشيف)
 └── src/
 	├── App.jsx
 	├── main.jsx
 	├── assets/
-	│   └── logo-triply.png
+	│   └── logo-triply.svg
 	├── components/
 	│   ├── Footer.jsx
 	│   ├── Navbar.jsx
 	│   ├── sections/
+	│   │   ├── BookingSection.jsx
 	│   │   ├── ContactSection.jsx
 	│   │   ├── DestinationsSection.jsx
 	│   │   ├── HeroSection.jsx
 	│   │   ├── ServicesSection.jsx
 	│   │   └── TestimonialsSection.jsx
 	│   └── ui/
-	│       ├── Button.jsx
-	│       └── Card.jsx
+	│       ├── Card.jsx
+	│       ├── GlassButton.jsx
+	│       ├── GoogleButton.jsx
+	│       └── InputField.jsx
 	├── data/
+	│   ├── bookingOptions.js
+	│   ├── destinations.js
 	│   ├── footerLinks.js
 	│   ├── navigation.js
-	│   └── services.js
+	│   ├── services.js
+	│   └── testimonials.js
 	├── layouts/
+	│   ├── AuthLayout.jsx
 	│   └── MainLayout.jsx
 	├── pages/
-	│   └── Home.jsx
+	│   ├── Home.jsx
+	│   └── auth/
+	│       ├── Login.jsx
+	│       └── Signup.jsx
 	└── styles/
 		└── global.css
 ```
@@ -50,11 +61,14 @@ Triply_pjc/
 
 | المكون | الوصف |
 |--------|-------|
-| `Button` | حالات متعددة (primary / secondary / ghost) مع زوايا دائرية وظلال متدرجة |
+| `GlassButton` | حالات متعددة (primary / secondary / accent / glass / outline) مع زوايا دائرية وظلال متدرجة |
 | `Card` | لوحات زجاجية لعرض الخدمات والشهادات |
-| `Navbar` | شريط علوي ثابت مع قائمة متجاوبة وتحكم في القائمة الجانبية |
+| `GoogleButton` | زر تسجيل دخول Google مع أيقونة |
+| `InputField` | حقول إدخال مع دعم الأيقونات والتحقق |
+| `Navbar` | شريط علوي ثابت مع قائمة متجاوبة وإدارة جلسة المستخدم |
 | `Footer` | فوتر غني بالمحتوى وروابط اجتماعية وأزرار إصدار |
 | `MainLayout` | يحوي الـ Navbar، المحتوى، والفوتر داخل بنية متماسكة |
+| `AuthLayout` | تخطيط خاص بصفحات تسجيل الدخول والتسجيل |
 
 ## 🎨 التصميم والهوية
 
@@ -67,9 +81,10 @@ Triply_pjc/
 
 ```bash
 npm install
-npm run dev
-npm run build
-npm run preview
+npm run dev       # تطوير محلي
+npm run build     # بناء للإنتاج
+npm run preview   # معاينة البناء
+npm run deploy    # بناء ونشر إلى GitHub Pages
 ```
 
 ## ✅ أفضل الممارسات المطبقة

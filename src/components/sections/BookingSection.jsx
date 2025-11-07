@@ -1,26 +1,6 @@
 import { useState } from 'react';
 import { GlassButton } from '../ui/GlassButton.jsx';
-
-const services = [
-  { id: 'flight', name: 'حجز طيران', icon: '✈️' },
-  { id: 'hotel', name: 'حجز فنادق', icon: '🏨' },
-  { id: 'restaurant', name: 'حجز مطاعم', icon: '🍽️' },
-  { id: 'activities', name: 'أنشطة وجولات', icon: '🎯' }
-];
-
-const budgetLevels = [
-  { id: 'economy', name: 'اقتصادي', description: 'خيارات موفرة ومريحة', color: 'triply-teal' },
-  { id: 'standard', name: 'متوسط', description: 'توازن بين السعر والجودة', color: 'triply' },
-  { id: 'luxury', name: 'فاخر', description: 'تجربة راقية ومميزة', color: 'triply-accent' }
-];
-
-const destinations = [
-  'لندن - المملكة المتحدة',
-  'باريس - فرنسا',
-  'القاهرة - مصر',
-  'إسطنبول - تركيا',
-  'دبي - الإمارات العربية المتحدة'
-];
+import { bookingServices, budgetLevels, bookingDestinations } from '../../data/bookingOptions.js';
 
 function BookingSection() {
   const [selectedServices, setSelectedServices] = useState([]);
@@ -35,11 +15,6 @@ function BookingSection() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log({
-      destination: selectedDestination,
-      services: selectedServices,
-      budget: selectedBudget
-    });
     alert('تم استلام طلب الحجز! سيتم التواصل معك قريباً.');
   };
 
@@ -69,7 +44,7 @@ function BookingSection() {
               required
             >
               <option value="">اختر المدينة...</option>
-              {destinations.map((dest) => (
+              {bookingDestinations.map((dest) => (
                 <option key={dest} value={dest}>
                   {dest}
                 </option>
@@ -82,7 +57,7 @@ function BookingSection() {
             <label className="block text-lg font-semibold text-triply-dark">اختر الخدمات المطلوبة</label>
             <p className="text-sm text-triply-slate/70">يمكنك اختيار خدمة واحدة أو أكثر</p>
             <div className="grid gap-3 sm:grid-cols-2">
-              {services.map((service) => (
+              {bookingServices.map((service) => (
                 <button
                   key={service.id}
                   type="button"
@@ -158,7 +133,7 @@ function BookingSection() {
               {selectedServices.length > 0 && (
                 <p>
                   <strong className="text-triply-dark">الخدمات:</strong>{' '}
-                  {selectedServices.map((id) => services.find((s) => s.id === id)?.name).join(' + ')}
+                  {selectedServices.map((id) => bookingServices.find((s) => s.id === id)?.name).join(' + ')}
                 </p>
               )}
               {selectedBudget && (

@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy": "npm run build && robocopy dist docs /MIR /NFL /NDL /NJH /NJS /nc /ns /np && git add docs && git commit -m \"build: update docs for GitHub Pages\" && git push origin gh-pages"
   },
   "dependencies": {
     "@vitejs/plugin-react": "^5.1.0",
