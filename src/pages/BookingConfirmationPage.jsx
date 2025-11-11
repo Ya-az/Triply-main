@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { QRCodeSVG } from 'qrcode.react';
 import { GlassButton } from '../components/ui/GlassButton.jsx';
 
 function BookingConfirmationPage() {
@@ -31,6 +32,21 @@ function BookingConfirmationPage() {
 
   const { destination, category, arrivalDate, departureDate, days, selectedFlight, selectedHotel, selectedRestaurants, selectedActivities, totalCost } = bookingData;
 
+  // أسماء الوجهات والفئات
+  const destinationNames = {
+    'london': 'لندن 🇬🇧',
+    'paris': 'باريس 🇫🇷',
+    'turkey': 'إسطنبول 🇹🇷',
+    'dubai': 'دبي 🇦🇪',
+    'egypt': 'القاهرة 🇪🇬'
+  };
+  
+  const categoryNames = {
+    'budget': 'اقتصادي 💰',
+    'midRange': 'متوسط ⭐',
+    'luxury': 'فاخر 💎'
+  };
+
   // دالة الطباعة
   const handlePrint = () => {
     window.print();
@@ -42,8 +58,8 @@ function BookingConfirmationPage() {
 🎉 *تأكيد حجز رحلة Triply*
 رقم التأكيد: ${confirmationNumber}
 
-📍 الوجهة: ${destination === 'london' ? 'لندن 🇬🇧' : 'باريس 🇫🇷'}
-🏷️ الفئة: ${category === 'budget' ? 'اقتصادي' : category === 'midRange' ? 'متوسط' : 'فاخر'}
+📍 الوجهة: ${destinationNames[destination] || destination}
+🏷️ الفئة: ${categoryNames[category] || category}
 📅 تاريخ الوصول: ${arrivalDate}
 📅 تاريخ المغادرة: ${departureDate}
 ⏱️ عدد الأيام: ${days}
@@ -69,7 +85,7 @@ function BookingConfirmationPage() {
 🎉 تأكيد حجز Triply
 رقم التأكيد: ${confirmationNumber}
 
-📍 ${destination === 'london' ? 'لندن 🇬🇧' : 'باريس 🇫🇷'} | ${category === 'budget' ? 'اقتصادي' : category === 'midRange' ? 'متوسط' : 'فاخر'}
+📍 ${destinationNames[destination] || destination} | ${categoryNames[category] || category}
 📅 من ${arrivalDate} إلى ${departureDate} (${days} أيام)
 💰 الإجمالي: ${totalCost?.toFixed(2)} ريال سعودي
 
@@ -182,18 +198,18 @@ function BookingConfirmationPage() {
             <div className="space-y-3">
               <div className="flex items-center gap-3 text-triply-dark dark:text-dark-text-primary print:text-black">
                 <span className="text-2xl">📍</span>
-                <div>
-                  <p className="text-xs text-triply-slate/70 dark:text-dark-text-secondary print:text-gray-600">الوجهة</p>
-                  <p className="text-lg font-bold">{destination === 'london' ? 'لندن 🇬🇧' : 'باريس 🇫🇷'}</p>
+                <div className="flex-1">
+                  <p className="text-xs text-triply-slate/70 dark:text-dark-text-secondary print:text-gray-600 mb-1">الوجهة</p>
+                  <p className="text-lg font-bold leading-relaxed">{destinationNames[destination] || destination}</p>
                 </div>
               </div>
 
               <div className="flex items-center gap-3 text-triply-dark dark:text-dark-text-primary print:text-black">
                 <span className="text-2xl">🏷️</span>
-                <div>
-                  <p className="text-xs text-triply-slate/70 dark:text-dark-text-secondary print:text-gray-600">الفئة</p>
-                  <p className="text-lg font-bold">
-                    {category === 'budget' ? 'اقتصادي 💰' : category === 'midRange' ? 'متوسط ⭐' : 'فاخر 💎'}
+                <div className="flex-1">
+                  <p className="text-xs text-triply-slate/70 dark:text-dark-text-secondary print:text-gray-600 mb-1">الفئة</p>
+                  <p className="text-lg font-bold leading-relaxed">
+                    {categoryNames[category] || category}
                   </p>
                 </div>
               </div>
@@ -307,6 +323,51 @@ function BookingConfirmationPage() {
               <p className="text-2xl font-bold text-triply-dark dark:text-dark-text-primary print:!text-triply">💰 المجموع الكلي</p>
             </div>
           </div>
+        </div>
+
+        {/* QR Code للفاتورة */}
+        <div className="mb-8 rounded-3xl border-2 border-triply-mint/40 dark:border-triply-teal/40 bg-white dark:bg-dark-elevated/90 p-8 shadow-2xl text-center print:border-2 print:border-black">
+          <h2 className="text-xl font-bold text-triply-dark dark:text-dark-text-primary print:!text-triply mb-4">
+            📱 رمز QR للفاتورة
+          </h2>
+          <div className="flex justify-center mb-4">
+            <div className="bg-white p-4 rounded-2xl shadow-lg border-4 border-triply-mint dark:border-triply-teal print:border-triply">
+              <QRCodeSVG 
+                value={JSON.stringify({
+                  confirmationNumber: confirmationNumber,
+                  destination: destinationNames[destination] || destination,
+                  category: categoryNames[category] || category,
+                  days: days,
+                  totalCost: totalCost,
+                  arrivalDate: arrivalDate,
+                  departureDate: departureDate,
+                  status: 'pending'
+                })}
+                size={180}
+                level="H"
+                includeMargin={true}
+                fgColor="#0f5b4a"
+                bgColor="#ffffff"
+              />
+            </div>
+          </div>
+          <p className="text-sm text-triply-dark/70 dark:text-dark-text-secondary print:!text-gray-700">
+            امسح الرمز للحصول على تفاصيل الحجز
+          </p>
+        </div>
+
+        {/* زر متابعة للدفع */}
+        <div className="print:hidden mb-6">
+          <button
+            onClick={() => navigate('/payment', { state: bookingData })}
+            className="w-full px-8 py-5 bg-gradient-to-r from-triply-teal to-triply-mint text-white text-xl font-bold rounded-2xl shadow-xl hover:shadow-2xl transform hover:scale-[1.02] transition-all flex items-center justify-center gap-3"
+          >
+            <span>متابعة للدفع</span>
+            <span className="text-2xl">💳</span>
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </button>
         </div>
 
         {/* أزرار الإجراءات (تخفى عند الطباعة) */}

@@ -14,9 +14,7 @@ export const supportLinks = [
 ];
 
 export const socialLinks = [
-  { label: 'انستقرام', href: '#', icon: 'instagram' },
-  { label: 'لينكدإن', href: '#', icon: 'linkedin' },
-  { label: 'تويتر', href: '#', icon: 'twitter' },
-  { label: 'يوتيوب', href: '#', icon: 'youtube' }
+  { label: 'منصة X', href: '#', icon: 'twitter' },
+  { label: 'واتساب', href: '#', icon: 'whatsapp' }
 ];
 // Single source exports only above. No diagnostic or alias exports to keep bundle clean.

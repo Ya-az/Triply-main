@@ -451,11 +451,11 @@ export const calculateTotalCost = (destination, category, days, selectedServices
     total += (hotel?.price || 0) * days;
   }
 
-  // المطاعم (يومي)
+  // المطاعم (حسب الاختيار)
   if (selectedServices.restaurants && selectedServices.restaurantChoices?.length > 0) {
     selectedServices.restaurantChoices.forEach(restId => {
       const restaurant = cityData.restaurants[category]?.find(r => r.id === restId);
-      total += (restaurant?.price || 0) * days;
+      total += restaurant?.price || 0;
     });
   }
 

@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
-import logoAsset from '../assets/logo-icon.svg';
+// import logoAsset from '../assets/logo-official.svg';
 
 /**
- * Unified brand logo component.
+ * Unified brand logo component - uses official Triply logo.
  * Props:
  *  - size: "sm" | "md" | "lg" (default md)
  *  - showText: boolean (shows Triply wordmark beside icon)
@@ -17,12 +17,10 @@ function BrandLogo({ size = 'md', showText = false, className = '' }) {
 
   return (
     <div className={`flex items-center gap-3 select-none ${className}`}>
-      <img
-        src={logoAsset}
-        alt="شعار Triply"
-        className={`${sizeMap[size]} object-contain flex-shrink-0`}
-        draggable="false"
-      />
+      {/* Placeholder until logo is added */}
+      <div className={`${sizeMap[size]} flex items-center justify-center bg-gradient-to-br from-triply-mint to-triply-teal dark:from-triply-teal dark:to-triply rounded-xl`}>
+        <span className="text-white font-bold text-lg">T</span>
+      </div>
       {showText && (
         <span
           className="font-display font-semibold text-xl md:text-2xl tracking-tight brand-word-gradient"

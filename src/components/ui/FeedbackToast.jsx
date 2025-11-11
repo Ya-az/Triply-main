@@ -17,7 +17,8 @@ function FeedbackToast({ message, variant = 'success', onDismiss, className }) {
       role="status"
       aria-live="polite"
       className={clsx(
-        'relative overflow-hidden rounded-2xl border bg-gradient-to-br px-4 py-3 shadow-lg shadow-black/5',
+        'relative overflow-hidden rounded-2xl border bg-gradient-to-br py-4 shadow-lg shadow-black/5',
+        onDismiss ? 'pl-20 pr-4' : 'px-4',
         variants[variant],
         className
       )}
@@ -27,9 +28,9 @@ function FeedbackToast({ message, variant = 'success', onDismiss, className }) {
         <button
           type="button"
           onClick={onDismiss}
-          className="absolute left-3 top-1/2 -translate-y-1/2 rounded-full border border-current px-2 py-0.5 text-xs font-semibold transition hover:opacity-80"
+          className="absolute left-3 top-1/2 -translate-y-1/2 rounded-lg border border-current px-3 py-1.5 text-xs font-bold transition hover:opacity-80 hover:scale-105"
         >
-          إغلاق
+          ✕
         </button>
       ) : null}
     </div>

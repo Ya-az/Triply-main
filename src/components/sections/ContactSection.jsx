@@ -90,7 +90,7 @@ function ContactSection() {
               </div>
               <div className="flex-1">
                 <h3 className="font-bold text-triply-dark dark:text-dark-text-primary mb-1 group-hover:text-triply dark:group-hover:text-triply-mint transition-colors">العنوان</h3>
-                <p className="text-triply-slate/80 dark:text-dark-text-secondary">جدة - المملكة العربية السعودية</p>
+                <p className="text-triply-slate/80 dark:text-dark-text-secondary">الدمام - المملكة العربية السعودية</p>
               </div>
             </div>
           </div>

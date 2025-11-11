@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { GlassButton } from '../components/ui/GlassButton.jsx';
+import { FeedbackToast } from '../components/ui/FeedbackToast.jsx';
 import { travelCosts, calculateDays } from '../data/travelCosts.js';
 import { useScrollReveal } from '../hooks/useScrollReveal.js';
 
@@ -28,6 +29,21 @@ function BookingDetailsPage() {
   // UI state
   const [showSummary, setShowSummary] = useState(false);
   const [totalCost, setTotalCost] = useState(0);
+  
+  // الميزانية
+  const [budget, setBudget] = useState('');
+  const [budgetError, setBudgetError] = useState('');
+  
+  // Toast notifications
+  const [toast, setToast] = useState({ show: false, message: '', type: 'error' });
+  
+  // دالة لعرض التنبيه
+  const showToast = (message, type = 'error') => {
+    setToast({ show: true, message, type });
+    setTimeout(() => {
+      setToast({ show: false, message: '', type: 'error' });
+    }, 5000);
+  };
 
   // استرجاع البيانات من localStorage أو URL params
   useEffect(() => {
@@ -82,9 +98,9 @@ function BookingDetailsPage() {
     }
 
     // المطاعم
-    if (selectedRestaurants.length > 0 && days > 0) {
+    if (selectedRestaurants.length > 0) {
       selectedRestaurants.forEach(rest => {
-        total += rest.price * days;
+        total += rest.price;
       });
     }
 
@@ -96,7 +112,14 @@ function BookingDetailsPage() {
     }
 
     setTotalCost(total);
-  }, [selectedFlight, selectedHotel, selectedRestaurants, selectedActivities, days]);
+    
+    // التحقق من تجاوز الميزانية
+    if (budget && parseFloat(budget) > 0 && total > parseFloat(budget)) {
+      setBudgetError(`⚠️ التكلفة الإجمالية (${total.toLocaleString()} ر.س) تجاوزت الميزانية المحددة (${parseFloat(budget).toLocaleString()} ر.س)`);
+    } else {
+      setBudgetError('');
+    }
+  }, [selectedFlight, selectedHotel, selectedRestaurants, selectedActivities, days, budget]);
 
   const cityData = travelCosts[destination];
   const flights = cityData?.flights || [];
@@ -107,6 +130,12 @@ function BookingDetailsPage() {
   // فلترة الأنشطة حسب الفئة
   const filteredActivities = activities.filter(act => act.category === category);
 
+  // التحقق من إمكانية إضافة خدمة
+  const canAddService = (serviceCost) => {
+    if (!budget || parseFloat(budget) <= 0) return true;
+    return (totalCost + serviceCost) <= parseFloat(budget);
+  };
+
   // Toggle restaurant selection
   const toggleRestaurant = (restaurant) => {
     setSelectedRestaurants(prev => {
@@ -114,6 +143,12 @@ function BookingDetailsPage() {
       if (exists) {
         return prev.filter(r => r.id !== restaurant.id);
       } else {
+        // التحقق من الميزانية قبل الإضافة
+        const restaurantCost = restaurant.price;
+        if (!canAddService(restaurantCost)) {
+          showToast(`لا يمكن إضافة هذا المطعم لأنه سيتجاوز ميزانيتك المحددة (${parseFloat(budget).toLocaleString()} ر.س)`);
+          return prev;
+        }
         return [...prev, restaurant];
       }
     });
@@ -126,6 +161,11 @@ function BookingDetailsPage() {
       if (exists) {
         return prev.filter(a => a.id !== activity.id);
       } else {
+        // التحقق من الميزانية قبل الإضافة
+        if (!canAddService(activity.price)) {
+          showToast(`لا يمكن إضافة هذا النشاط لأنه سيتجاوز ميزانيتك المحددة (${parseFloat(budget).toLocaleString()} ر.س)`);
+          return prev;
+        }
         return [...prev, activity];
       }
     });
@@ -133,6 +173,12 @@ function BookingDetailsPage() {
 
   // الانتقال لصفحة التأكيد
   const handleConfirmBooking = () => {
+    // التحقق من الميزانية قبل التأكيد
+    if (budget && parseFloat(budget) > 0 && totalCost > parseFloat(budget)) {
+      showToast(`لا يمكن تأكيد الحجز! التكلفة الإجمالية (${totalCost.toLocaleString()} ر.س) تجاوزت الميزانية المحددة (${parseFloat(budget).toLocaleString()} ر.س)`);
+      return;
+    }
+
     const bookingData = {
       destination,
       category,
@@ -143,7 +189,8 @@ function BookingDetailsPage() {
       selectedHotel,
       selectedRestaurants,
       selectedActivities,
-      totalCost
+      totalCost,
+      budget
     };
 
     // حفظ البيانات في localStorage
@@ -155,11 +202,25 @@ function BookingDetailsPage() {
 
   // مشاركة عبر واتساب
   const handleWhatsAppShare = () => {
+    const destinationNames = {
+      'london': 'لندن 🇬🇧',
+      'paris': 'باريس 🇫🇷',
+      'turkey': 'إسطنبول �🇷',
+      'dubai': 'دبي 🇦🇪',
+      'egypt': 'القاهرة 🇪🇬'
+    };
+    
+    const categoryNames = {
+      'budget': 'اقتصادي 💰',
+      'midRange': 'متوسط ⭐',
+      'luxury': 'فاخر 💎'
+    };
+    
     const message = `
 🌍 *حجز رحلة Triply*
 
-📍 الوجهة: ${destination === 'london' ? 'لندن 🇬🇧' : 'باريس 🇫🇷'}
-🏷️ الفئة: ${category === 'budget' ? 'اقتصادي' : category === 'midRange' ? 'متوسط' : 'فاخر'}
+📍 الوجهة: ${destinationNames[destination] || destination}
+🏷️ الفئة: ${categoryNames[category] || category}
 📅 تاريخ الوصول: ${arrivalDate}
 📅 تاريخ المغادرة: ${departureDate}
 ⏱️ عدد الأيام: ${days}
@@ -252,6 +313,9 @@ function BookingDetailsPage() {
                   >
                     <option value="london">لندن 🇬🇧</option>
                     <option value="paris">باريس 🇫🇷</option>
+                    <option value="turkey">إسطنبول 🇹🇷</option>
+                    <option value="dubai">دبي 🇦🇪</option>
+                    <option value="egypt">القاهرة 🇪🇬</option>
                   </select>
                   <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-triply/0 via-triply-mint/5 to-triply/0 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
                 </div>
@@ -323,6 +387,57 @@ function BookingDetailsPage() {
                   <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-triply/0 via-triply-mint/5 to-triply/0 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
                 </div>
               </div>
+
+              {/* الميزانية */}
+              <div className="space-y-3 md:col-span-2">
+                <label className="flex items-center gap-2 text-sm font-bold text-triply-dark dark:text-dark-text-primary">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-triply-accent to-triply dark:from-triply-mint dark:to-triply-teal">
+                    <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M8.433 7.418c.155-.103.346-.196.567-.267v1.698a2.305 2.305 0 01-.567-.267C8.07 8.34 8 8.114 8 8c0-.114.07-.34.433-.582zM11 12.849v-1.698c.22.071.412.164.567.267.364.243.433.468.433.582 0 .114-.07.34-.433.582a2.305 2.305 0 01-.567.267z" />
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v.092a4.535 4.535 0 00-1.676.662C6.602 6.234 6 7.009 6 8c0 .99.602 1.765 1.324 2.246.48.32 1.054.545 1.676.662v1.941c-.391-.127-.68-.317-.843-.504a1 1 0 10-1.51 1.31c.562.649 1.413 1.076 2.353 1.253V15a1 1 0 102 0v-.092a4.535 4.535 0 001.676-.662C13.398 13.766 14 12.991 14 12c0-.99-.602-1.765-1.324-2.246A4.535 4.535 0 0011 9.092V7.151c.391.127.68.317.843.504a1 1 0 101.511-1.31c-.563-.649-1.413-1.076-2.354-1.253V5z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                  <span className="text-lg">الميزانية المتاحة (اختياري)</span>
+                  <span className="text-xs text-triply-slate/60 dark:text-dark-text-secondary font-normal">(سنمنعك من تجاوز هذا المبلغ)</span>
+                </label>
+                <div className="relative group">
+                  <input
+                    type="number"
+                    value={budget}
+                    onChange={(e) => setBudget(e.target.value)}
+                    placeholder="مثال: 15000"
+                    min="0"
+                    step="100"
+                    className="w-full rounded-xl border-2 border-triply-accent/40 dark:border-triply-mint/40 bg-gradient-to-br from-white to-triply-sand/20 dark:from-dark-surface dark:to-dark-elevated pr-5 pl-20 py-4 text-right text-lg font-bold text-triply-dark dark:!text-dark-text-primary shadow-xl transition-all duration-300 hover:border-triply-accent dark:hover:border-triply-mint hover:shadow-2xl focus:border-triply-accent dark:focus:border-triply-mint focus:outline-none focus:ring-4 focus:ring-triply-accent/30 dark:focus:ring-triply-mint/30 group-hover:scale-[1.02] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                  />
+                  <div className="absolute left-5 top-1/2 -translate-y-1/2 text-triply-accent dark:text-triply-mint font-bold text-lg pointer-events-none">
+                    ر.س
+                  </div>
+                  <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-triply-accent/0 via-triply-accent/5 to-triply-accent/0 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+                </div>
+                {budget && parseFloat(budget) > 0 && (
+                  <div className="flex items-center justify-between p-4 rounded-xl bg-gradient-to-r from-triply-mint/20 via-triply-teal/10 to-triply-mint/20 dark:from-triply-teal/20 dark:via-triply-mint/10 dark:to-triply-teal/20 border border-triply-mint/30 dark:border-triply-teal/30">
+                    <div className="flex items-center gap-2">
+                      <span className="text-sm font-medium text-triply-dark dark:text-dark-text-primary">💰 الميزانية المحددة:</span>
+                      <span className="text-lg font-bold text-triply dark:text-triply-mint">{parseFloat(budget).toLocaleString()} ر.س</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-sm font-medium text-triply-slate dark:text-dark-text-secondary">المتبقي:</span>
+                      <span className={`text-lg font-bold ${(parseFloat(budget) - totalCost) >= 0 ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'}`}>
+                        {(parseFloat(budget) - totalCost).toLocaleString()} ر.س
+                      </span>
+                    </div>
+                  </div>
+                )}
+                {budgetError && (
+                  <div className="flex items-start gap-3 p-4 rounded-xl bg-red-50 dark:bg-red-900/20 border-2 border-red-300 dark:border-red-700 animate-pulse">
+                    <svg className="w-6 h-6 text-red-600 dark:text-red-400 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                    </svg>
+                    <p className="text-sm font-bold text-red-700 dark:text-red-300">{budgetError}</p>
+                  </div>
+                )}
+              </div>
             </div>
 
             {/* عدد الأيام */}
@@ -360,7 +475,15 @@ function BookingDetailsPage() {
               {flights.map((flight) => (
                 <button
                   key={flight.id}
-                  onClick={() => setSelectedFlight(flight)}
+                  onClick={() => {
+                    // حساب التكلفة الجديدة
+                    const newTotal = totalCost - (selectedFlight?.price || 0) + flight.price;
+                    if (budget && parseFloat(budget) > 0 && newTotal > parseFloat(budget)) {
+                      showToast(`لا يمكن اختيار هذه الرحلة لأنها ستتجاوز ميزانيتك المحددة (${parseFloat(budget).toLocaleString()} ر.س)`);
+                      return;
+                    }
+                    setSelectedFlight(flight);
+                  }}
                   className={`group relative overflow-hidden rounded-2xl p-6 text-right transition-all duration-500 border-2 ${
                     selectedFlight?.id === flight.id
                       ? 'border-triply dark:border-triply-mint shadow-2xl dark:shadow-glow-dark bg-gradient-to-br from-triply/5 via-triply-mint/10 to-triply-teal/5 dark:from-triply-mint/10 dark:via-triply-teal/10 dark:to-triply/5 scale-105'
@@ -410,7 +533,14 @@ function BookingDetailsPage() {
               {hotels.map((hotel) => (
                 <button
                   key={hotel.id}
-                  onClick={() => setSelectedHotel(hotel)}
+                  onClick={() => {
+                    const newTotal = totalCost - (selectedHotel ? selectedHotel.price * days : 0) + (hotel.price * days);
+                    if (budget && parseFloat(budget) > 0 && newTotal > parseFloat(budget)) {
+                      showToast(`لا يمكن اختيار هذا الفندق لأنه سيتجاوز ميزانيتك المحددة (${parseFloat(budget).toLocaleString()} ر.س)`);
+                      return;
+                    }
+                    setSelectedHotel(hotel);
+                  }}
                   className={`group relative overflow-hidden rounded-2xl p-6 text-right transition-all duration-500 border-2 ${
                     selectedHotel?.id === hotel.id
                       ? 'border-triply dark:border-triply-mint shadow-2xl dark:shadow-glow-dark bg-gradient-to-br from-triply/5 via-triply-mint/10 to-triply-teal/5 dark:from-triply-mint/10 dark:via-triply-teal/10 dark:to-triply/5 scale-105'
@@ -657,6 +787,18 @@ function BookingDetailsPage() {
           </div>
         </div>
       </div>
+      
+      {/* Toast Notification */}
+      {toast.show && (
+        <div className="fixed top-24 left-1/2 -translate-x-1/2 z-50 animate-slide-down">
+          <FeedbackToast
+            message={toast.message}
+            variant={toast.type}
+            onDismiss={() => setToast({ show: false, message: '', type: 'error' })}
+            className="min-w-[320px] max-w-2xl shadow-2xl"
+          />
+        </div>
+      )}
     </div>
   );
 }

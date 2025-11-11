@@ -15,6 +15,7 @@ function BookingSection() {
   const [selectedServices, setSelectedServices] = useState([]);
   const [selectedBudget, setSelectedBudget] = useState('');
   const [selectedDestination, setSelectedDestination] = useState('');
+  const [userBudget, setUserBudget] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [feedback, setFeedback] = useState(null);
   const [hasSavedPreferences, setHasSavedPreferences] = useState(false);
@@ -68,10 +69,36 @@ function BookingSection() {
     }
   }, [selectedDestination, selectedServices, selectedBudget]);
 
+  // حساب التكلفة الإجمالية للخدمات المختارة
+  const calculateTotalCost = () => {
+    return selectedServices.reduce((total, serviceId) => {
+      const service = bookingServices.find(s => s.id === serviceId);
+      return total + (service?.estimatedCost || 0);
+    }, 0);
+  };
+
   const toggleService = (serviceId) => {
-    setSelectedServices((prev) =>
-      prev.includes(serviceId) ? prev.filter((id) => id !== serviceId) : [...prev, serviceId]
-    );
+    const service = bookingServices.find(s => s.id === serviceId);
+    const currentTotal = calculateTotalCost();
+    const budgetLimit = parseFloat(userBudget) || Infinity;
+
+    // إذا كانت الخدمة مختارة بالفعل، اسمح بإلغائها
+    if (selectedServices.includes(serviceId)) {
+      setSelectedServices((prev) => prev.filter((id) => id !== serviceId));
+      return;
+    }
+
+    // تحقق من الميزانية قبل إضافة خدمة جديدة
+    const newTotal = currentTotal + (service?.estimatedCost || 0);
+    if (userBudget && newTotal > budgetLimit) {
+      setFeedback({
+        message: `⚠️ لا يمكن إضافة هذه الخدمة! المجموع (${newTotal.toLocaleString()} ريال) سيتجاوز ميزانيتك (${budgetLimit.toLocaleString()} ريال)`,
+        variant: 'error'
+      });
+      return;
+    }
+
+    setSelectedServices((prev) => [...prev, serviceId]);
   };
 
   const handleSubmit = (e) => {
@@ -195,14 +222,78 @@ function BookingSection() {
             className="mb-4"
             onDismiss={() => setFeedback(null)}
           />
-          {/* اختيار الوجهة */}
-          <div className="space-y-4">
-            <label className="flex items-center gap-2 text-lg font-bold text-triply-dark dark:text-dark-text-primary">
-              <svg className="w-6 h-6 text-triply dark:text-triply-mint" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
-              </svg>
-              {formHelpers.booking.destination.label}
-            </label>
+          {/* الخطوة 1: إدخال الميزانية واختيار الوجهة */}
+          <div className="space-y-6 p-6 rounded-2xl bg-gradient-to-br from-triply-mint/5 to-triply-teal/5 dark:from-triply-teal/10 dark:to-triply-mint/5 border-2 border-triply-mint/30 dark:border-triply-teal/30">
+            <div className="flex items-center gap-3 pb-3 border-b-2 border-triply-mint/20 dark:border-triply-teal/20">
+              <span className="flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-br from-triply to-triply-teal text-white font-bold text-lg shadow-lg">1</span>
+              <h3 className="text-xl font-bold text-triply-dark dark:text-dark-text-primary">حدد ميزانيتك واختر الوجهة</h3>
+            </div>
+
+            {/* إدخال الميزانية */}
+            <div className="space-y-3">
+              <label className="flex items-center gap-2 text-base font-bold text-triply-dark dark:text-dark-text-primary">
+                <svg className="w-5 h-5 text-triply dark:text-triply-mint" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M8.433 7.418c.155-.103.346-.196.567-.267v1.698a2.305 2.305 0 01-.567-.267C8.07 8.34 8 8.114 8 8c0-.114.07-.34.433-.582zM11 12.849v-1.698c.22.071.412.164.567.267.364.243.433.468.433.582 0 .114-.07.34-.433.582a2.305 2.305 0 01-.567.267z" />
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v.092a4.535 4.535 0 00-1.676.662C6.602 6.234 6 7.009 6 8c0 .99.602 1.765 1.324 2.246.48.32 1.054.545 1.676.662v1.941c-.391-.127-.68-.317-.843-.504a1 1 0 10-1.51 1.31c.562.649 1.413 1.076 2.353 1.253V15a1 1 0 102 0v-.092a4.535 4.535 0 001.676-.662C13.398 13.766 14 12.991 14 12c0-.99-.602-1.765-1.324-2.246A4.535 4.535 0 0011 9.092V7.151c.391.127.68.317.843.504a1 1 0 101.511-1.31c-.563-.649-1.413-1.076-2.354-1.253V5z" clipRule="evenodd" />
+                </svg>
+                الميزانية المتاحة (ريال سعودي)
+              </label>
+              <div className="relative">
+                <input
+                  type="number"
+                  value={userBudget}
+                  onChange={(e) => setUserBudget(e.target.value)}
+                  placeholder="مثال: 5000"
+                  min="0"
+                  step="100"
+                  className="w-full rounded-xl border-2 border-triply-mint/40 dark:border-dark-border/50 bg-white dark:bg-dark-surface px-5 py-4 text-right text-lg font-semibold text-triply-dark dark:text-dark-text-primary placeholder:text-triply-slate/40 dark:placeholder:text-dark-text-secondary/40 shadow-md transition-all duration-200 hover:border-triply dark:hover:border-triply-mint focus:border-triply dark:focus:border-triply-mint focus:outline-none focus:ring-4 focus:ring-triply/10 dark:focus:ring-triply-mint/20"
+                />
+                <span className="absolute left-5 top-1/2 -translate-y-1/2 text-triply-slate/60 dark:text-dark-text-secondary font-medium">ريال</span>
+              </div>
+              <FormHelper text="حدد الميزانية الإجمالية المتاحة لرحلتك. لن يمكنك تجاوز هذا المبلغ عند اختيار الخدمات." />
+              
+              {/* عرض الميزانية المتبقية */}
+              {userBudget && (
+                <div className="mt-4 p-4 rounded-xl bg-gradient-to-r from-triply/10 to-triply-teal/10 dark:from-triply-teal/20 dark:to-triply-mint/10 border border-triply-mint/30 dark:border-triply-teal/30">
+                  <div className="flex justify-between items-center text-sm">
+                    <span className="font-semibold text-triply-dark dark:text-dark-text-primary">الميزانية المحددة:</span>
+                    <span className="text-lg font-bold text-triply dark:text-triply-mint">{parseFloat(userBudget).toLocaleString()} ريال</span>
+                  </div>
+                  <div className="flex justify-between items-center text-sm mt-2">
+                    <span className="font-semibold text-triply-dark dark:text-dark-text-primary">المبلغ المستخدم:</span>
+                    <span className="text-lg font-bold text-triply-accent dark:text-triply-accentLight">{calculateTotalCost().toLocaleString()} ريال</span>
+                  </div>
+                  <div className="flex justify-between items-center text-sm mt-2 pt-2 border-t border-triply-mint/20 dark:border-triply-teal/20">
+                    <span className="font-semibold text-triply-dark dark:text-dark-text-primary">المتبقي:</span>
+                    <span className={`text-lg font-bold ${(parseFloat(userBudget) - calculateTotalCost()) >= 0 ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'}`}>
+                      {(parseFloat(userBudget) - calculateTotalCost()).toLocaleString()} ريال
+                    </span>
+                  </div>
+                  {/* شريط تقدم الميزانية */}
+                  <div className="mt-3 h-3 bg-triply-sand/30 dark:bg-dark-surface/50 rounded-full overflow-hidden">
+                    <div 
+                      className={`h-full rounded-full transition-all duration-500 ${
+                        (calculateTotalCost() / parseFloat(userBudget)) * 100 > 90 
+                          ? 'bg-gradient-to-r from-red-500 to-red-600' 
+                          : (calculateTotalCost() / parseFloat(userBudget)) * 100 > 70 
+                          ? 'bg-gradient-to-r from-yellow-500 to-orange-500' 
+                          : 'bg-gradient-to-r from-triply to-triply-teal'
+                      }`}
+                      style={{ width: `${Math.min((calculateTotalCost() / parseFloat(userBudget)) * 100, 100)}%` }}
+                    />
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* اختيار الوجهة */}
+            <div className="space-y-3">
+              <label className="flex items-center gap-2 text-base font-bold text-triply-dark dark:text-dark-text-primary">
+                <svg className="w-5 h-5 text-triply dark:text-triply-mint" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
+                </svg>
+                {formHelpers.booking.destination.label}
+              </label>
             <select
               value={selectedDestination}
               onChange={(e) => setSelectedDestination(e.target.value)}
@@ -218,6 +309,7 @@ function BookingSection() {
               ))}
             </select>
             <FormHelper text={formHelpers.booking.destination.helper} />
+            </div>
           </div>
 
           {/* اختيار الخدمات */}

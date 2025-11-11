@@ -2,22 +2,26 @@ export const bookingServices = [
   { 
     id: 'flight', 
     name: 'حجز طيران', 
-    icon: '✈️'
+    icon: '✈️',
+    estimatedCost: 1500
   },
   { 
     id: 'hotel', 
     name: 'حجز فنادق', 
-    icon: '🏨'
+    icon: '🏨',
+    estimatedCost: 2000
   },
   { 
     id: 'restaurant', 
     name: 'حجز مطاعم', 
-    icon: '🍽️'
+    icon: '🍽️',
+    estimatedCost: 500
   },
   { 
     id: 'activities', 
     name: 'أنشطة وجولات', 
-    icon: '🎯'
+    icon: '🎯',
+    estimatedCost: 1000
   }
 ];
 

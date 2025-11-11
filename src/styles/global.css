@@ -15,6 +15,18 @@
     @apply bg-dark-bg text-dark-text-primary;
   }
 
+  /* Hide number input spinners globally */
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input[type="number"] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+  }
+
   ::selection {
     background-color: rgba(213, 156, 86, 0.25);
     color: #0f5b4a;
@@ -38,6 +50,21 @@
 
   .animate-slideDown {
     animation: slideDown 0.4s ease-out;
+  }
+
+  @keyframes slide-down {
+    from {
+      transform: translate(-50%, -120%);
+      opacity: 0;
+    }
+    to {
+      transform: translate(-50%, 0);
+      opacity: 1;
+    }
+  }
+
+  .animate-slide-down {
+    animation: slide-down 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   /* Scroll Reveal Animations */
@@ -199,6 +226,14 @@
 
   .reveal-slide-up {
     animation: slideInUp 1s ease-out forwards;
+  }
+
+  .animate-fadeIn {
+    animation: fadeIn 0.5s ease-out forwards;
+  }
+
+  .animate-scaleIn {
+    animation: scaleIn 0.5s ease-out forwards;
   }
 
   /* Fix select and option colors in dark mode */
