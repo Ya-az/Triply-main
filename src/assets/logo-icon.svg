@@ -1,0 +1,60 @@
+<!-- Triply icon-only refined to match provided reference: three glossy swooshes + plane -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="triplyIconTitle triplyIconDesc">
+  <title id="triplyIconTitle">Triply Icon</title>
+  <desc id="triplyIconDesc">Three curved glossy swooshes arranged like a pinwheel with a small airplane on the tan swoosh.</desc>
+  <defs>
+    <!-- Greens -->
+    <linearGradient id="swooshMint" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#bfe8df"/>
+      <stop offset="55%" stop-color="#6fceb9"/>
+      <stop offset="100%" stop-color="#43a995"/>
+    </linearGradient>
+    <linearGradient id="swooshDeep" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a2f24"/>
+      <stop offset="50%" stop-color="#0f5b4a"/>
+      <stop offset="100%" stop-color="#0b3f32"/>
+    </linearGradient>
+    <!-- Tan / Gold -->
+    <linearGradient id="swooshTan" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#d59c56"/>
+      <stop offset="65%" stop-color="#e5b97d"/>
+      <stop offset="100%" stop-color="#f2c892"/>
+    </linearGradient>
+    <!-- White edge highlight -->
+    <linearGradient id="edgeWhite" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity=".85"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#0f5b4a" flood-opacity="0.25" />
+    </filter>
+  </defs>
+
+  <g transform="translate(8 6)" filter="url(#softShadow)">
+    <!-- Top-left mint swoosh -->
+    <g transform="rotate(-22 40 32)">
+      <path d="M22 16c12-6 30-2 36 10 5 10-4 20-16 26-13 7-27 6-33-3-6-9 1-24 13-33Z" fill="url(#swooshMint)"/>
+      <path d="M28 22c10-5 24-3 28 6 3 7-4 14-13 19-11 6-22 6-26-1-4-6 1-17 11-24Z" fill="url(#swooshDeep)"/>
+      <path d="M22 16c12-6 30-2 36 10" fill="none" stroke="url(#edgeWhite)" stroke-width="3" stroke-linecap="round"/>
+    </g>
+
+    <!-- Bottom-left dark/green swoosh -->
+    <g transform="rotate(96 38 74)">
+      <path d="M18 56c14-7 34-3 40 9 6 12-6 24-20 30-15 6-32 4-38-7-5-10 3-24 18-32Z" fill="url(#swooshMint)"/>
+      <path d="M24 62c11-6 27-4 31 5 4 8-5 16-16 20-13 6-25 4-29-3-4-7 2-17 14-22Z" fill="url(#swooshDeep)"/>
+      <path d="M18 56c14-7 34-3 40 9" fill="none" stroke="url(#edgeWhite)" stroke-width="3" stroke-linecap="round"/>
+    </g>
+
+    <!-- Right tan swoosh with plane notch -->
+    <g transform="rotate(18 92 44)">
+      <path d="M66 20c16-6 34 2 38 16 4 14-7 25-23 30-17 5-34 0-38-12-3-10 7-26 23-34Z" fill="url(#swooshTan)"/>
+      <path d="M70 28c14-6 29 1 32 12 3 10-8 18-20 21-15 4-28 0-30-9-2-8 7-19 18-24Z" fill="url(#swooshMint)"/>
+      <path d="M66 20c16-6 34 2 38 16" fill="none" stroke="url(#edgeWhite)" stroke-width="3" stroke-linecap="round"/>
+    </g>
+
+    <!-- Airplane on tan swoosh edge (small, dark green with white border) -->
+    <g transform="translate(86 22) rotate(15)">
+      <path d="M0 13l10 4 17-3 2 3-14 7 6 10-4 2-9-9-6 3 2 6-3 1-7-10-10-4 2-3 11 2 6-6 4-2z" fill="#0a3b2f" stroke="#ffffff" stroke-width="1.5" stroke-linejoin="round"/>
+    </g>
+  </g>
+</svg>
