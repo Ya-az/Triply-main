@@ -1,4 +1,5 @@
 import { useStaggeredReveal } from '../../hooks/useScrollReveal.js';
+import { HashLink } from 'react-router-hash-link';
 
 function HowItWorksSection() {
   const steps = [
@@ -96,15 +97,16 @@ function HowItWorksSection() {
 
         {/* CTA */}
         <div className="mt-10 sm:mt-12 text-center px-4">
-          <a
-            href="#booking"
+          <HashLink
+            smooth
+            to="/#booking"
             className="inline-flex items-center gap-2 rounded-xl bg-triply dark:bg-triply-teal px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base text-white dark:text-triply-dark font-semibold shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300"
           >
             ابدأ رحلتك الآن
             <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
             </svg>
-          </a>
+          </HashLink>
         </div>
       </div>
     </section>

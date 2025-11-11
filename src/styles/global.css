@@ -231,4 +231,101 @@
   .dark select::-webkit-scrollbar-thumb {
     background: #71d4c1;
   }
+
+  /* AI Quiz Animations */
+  @keyframes progress {
+    0% {
+      width: 0%;
+    }
+    100% {
+      width: 100%;
+    }
+  }
+
+  .animate-progress {
+    animation: progress 2s ease-in-out infinite;
+  }
+
+  .delay-100 {
+    animation-delay: 0.1s;
+  }
+
+  .delay-200 {
+    animation-delay: 0.2s;
+  }
+}
+
+/* Print Styles for Booking Confirmation */
+@media print {
+  @page {
+    size: A4;
+    margin: 1.5cm;
+  }
+
+  body {
+    background: white !important;
+    color: black !important;
+    font-size: 12pt;
+  }
+
+  .print\:hidden {
+    display: none !important;
+  }
+
+  .print\:block {
+    display: block !important;
+  }
+
+  /* إخفاء العناصر غير الضرورية */
+  nav, footer, button, .no-print {
+    display: none !important;
+  }
+
+  /* تحسين الألوان للطباعة */
+  * {
+    color: black !important;
+    background: white !important;
+    text-shadow: none !important;
+    box-shadow: none !important;
+  }
+
+  /* إظهار الحدود بشكل واضح */
+  .print\:border {
+    border: 1px solid #333 !important;
+  }
+
+  .print\:border-gray-300 {
+    border-color: #d1d5db !important;
+  }
+
+  /* تحسين الهوامش */
+  .print\:py-8 {
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+  }
+
+  /* إظهار العناصر المهمة */
+  h1, h2, h3, h4, h5, h6 {
+    page-break-after: avoid;
+    font-weight: bold !important;
+    color: #0f5b4a !important;
+  }
+
+  /* منع تقطيع العناصر */
+  div, section {
+    page-break-inside: avoid;
+  }
+
+  /* تحسين الجداول */
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  /* إظهار الروابط */
+  a[href]:after {
+    content: " (" attr(href) ")";
+    font-size: 10pt;
+    color: #666 !important;
+  }
 }

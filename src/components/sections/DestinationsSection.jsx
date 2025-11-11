@@ -59,6 +59,12 @@ function DestinationsSection() {
                 <p className="text-sm leading-6 text-triply-slate/75 dark:text-dark-text-secondary">
                   {destination.description}
                 </p>
+                {destination.price && (
+                  <div className="flex items-center justify-between pt-2 border-t border-triply-mint/30 dark:border-dark-border/30">
+                    <span className="text-xs text-triply-slate/60 dark:text-dark-text-secondary">التكلفة المتوقعة</span>
+                    <span className="font-display text-lg font-bold text-triply dark:text-triply-mint">{destination.price}</span>
+                  </div>
+                )}
               </div>
               
               {/* Decorative bottom gradient */}

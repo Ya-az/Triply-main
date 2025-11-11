@@ -1,8 +1,24 @@
 export const bookingServices = [
-  { id: 'flight', name: 'حجز طيران', icon: '✈️' },
-  { id: 'hotel', name: 'حجز فنادق', icon: '🏨' },
-  { id: 'restaurant', name: 'حجز مطاعم', icon: '🍽️' },
-  { id: 'activities', name: 'أنشطة وجولات', icon: '🎯' }
+  { 
+    id: 'flight', 
+    name: 'حجز طيران', 
+    icon: '✈️'
+  },
+  { 
+    id: 'hotel', 
+    name: 'حجز فنادق', 
+    icon: '🏨'
+  },
+  { 
+    id: 'restaurant', 
+    name: 'حجز مطاعم', 
+    icon: '🍽️'
+  },
+  { 
+    id: 'activities', 
+    name: 'أنشطة وجولات', 
+    icon: '🎯'
+  }
 ];
 
 export const budgetLevels = [
