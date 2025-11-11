@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { QRCodeSVG } from 'qrcode.react';
 import { GlassButton } from '../components/ui/GlassButton.jsx';
 
 function BookingConfirmationPage() {
@@ -323,37 +322,6 @@ function BookingConfirmationPage() {
               <p className="text-2xl font-bold text-triply-dark dark:text-dark-text-primary print:!text-triply">💰 المجموع الكلي</p>
             </div>
           </div>
-        </div>
-
-        {/* QR Code للفاتورة */}
-        <div className="mb-8 rounded-3xl border-2 border-triply-mint/40 dark:border-triply-teal/40 bg-white dark:bg-dark-elevated/90 p-8 shadow-2xl text-center print:border-2 print:border-black">
-          <h2 className="text-xl font-bold text-triply-dark dark:text-dark-text-primary print:!text-triply mb-4">
-            📱 رمز QR للفاتورة
-          </h2>
-          <div className="flex justify-center mb-4">
-            <div className="bg-white p-4 rounded-2xl shadow-lg border-4 border-triply-mint dark:border-triply-teal print:border-triply">
-              <QRCodeSVG 
-                value={JSON.stringify({
-                  confirmationNumber: confirmationNumber,
-                  destination: destinationNames[destination] || destination,
-                  category: categoryNames[category] || category,
-                  days: days,
-                  totalCost: totalCost,
-                  arrivalDate: arrivalDate,
-                  departureDate: departureDate,
-                  status: 'pending'
-                })}
-                size={180}
-                level="H"
-                includeMargin={true}
-                fgColor="#0f5b4a"
-                bgColor="#ffffff"
-              />
-            </div>
-          </div>
-          <p className="text-sm text-triply-dark/70 dark:text-dark-text-secondary print:!text-gray-700">
-            امسح الرمز للحصول على تفاصيل الحجز
-          </p>
         </div>
 
         {/* زر متابعة للدفع */}
