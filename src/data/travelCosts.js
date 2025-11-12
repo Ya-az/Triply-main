@@ -5,65 +5,65 @@ export const DEFAULT_ORIGIN = 'DMM';
 
 export const travelCosts = {
   london: {
-    // 🏨 الفنادق في لندن (4 خيارات لكل فئة)
+    // 🏨 الفنادق في لندن (4 خيارات لكل فئة) - الأسعار لليلة الواحدة
     hotels: {
       budget: [
-        { id: 'lon-hotel-b1', name: 'Premier Inn London', price: 400, stars: 3, location: 'Westminster' },
-        { id: 'lon-hotel-b2', name: 'Travelodge Central', price: 450, stars: 3, location: 'Kings Cross' },
-        { id: 'lon-hotel-b3', name: 'Hub by Premier Inn', price: 500, stars: 3, location: 'Covent Garden' },
-        { id: 'lon-hotel-b4', name: 'Ibis London City', price: 550, stars: 3, location: 'Shoreditch' }
+        { id: 'lon-hotel-b1', name: 'Premier Inn London', price: 350, stars: 3, location: 'Westminster' },
+        { id: 'lon-hotel-b2', name: 'Travelodge Central', price: 380, stars: 3, location: 'Kings Cross' },
+        { id: 'lon-hotel-b3', name: 'Hub by Premier Inn', price: 420, stars: 3, location: 'Covent Garden' },
+        { id: 'lon-hotel-b4', name: 'Ibis London City', price: 450, stars: 3, location: 'Shoreditch' }
       ],
       midRange: [
-        { id: 'lon-hotel-m1', name: 'Hilton London Metropole', price: 900, stars: 4, location: 'Paddington' },
-        { id: 'lon-hotel-m2', name: 'Marriott County Hall', price: 1050, stars: 4, location: 'South Bank' },
-        { id: 'lon-hotel-m3', name: 'Crowne Plaza London', price: 1200, stars: 4, location: 'Kensington' },
-        { id: 'lon-hotel-m4', name: 'Novotel Tower Bridge', price: 1300, stars: 4, location: 'Tower Bridge' }
+        { id: 'lon-hotel-m1', name: 'Hilton London Metropole', price: 750, stars: 4, location: 'Paddington' },
+        { id: 'lon-hotel-m2', name: 'Marriott County Hall', price: 850, stars: 4, location: 'South Bank' },
+        { id: 'lon-hotel-m3', name: 'Crowne Plaza London', price: 950, stars: 4, location: 'Kensington' },
+        { id: 'lon-hotel-m4', name: 'Novotel Tower Bridge', price: 1050, stars: 4, location: 'Tower Bridge' }
       ],
       luxury: [
-        { id: 'lon-hotel-l1', name: 'The Ritz London', price: 2200, stars: 5, location: 'Piccadilly' },
-        { id: 'lon-hotel-l2', name: 'Shangri-La The Shard', price: 2600, stars: 5, location: 'London Bridge' },
-        { id: 'lon-hotel-l3', name: 'Claridge\'s Mayfair', price: 3000, stars: 5, location: 'Mayfair' },
-        { id: 'lon-hotel-l4', name: 'The Savoy', price: 3500, stars: 5, location: 'Strand' }
+        { id: 'lon-hotel-l1', name: 'The Ritz London', price: 1800, stars: 5, location: 'Piccadilly' },
+        { id: 'lon-hotel-l2', name: 'Shangri-La The Shard', price: 2100, stars: 5, location: 'London Bridge' },
+        { id: 'lon-hotel-l3', name: 'Claridge\'s Mayfair', price: 2400, stars: 5, location: 'Mayfair' },
+        { id: 'lon-hotel-l4', name: 'The Savoy', price: 2800, stars: 5, location: 'Strand' }
       ]
     },
 
-    // 🍽️ المطاعم في لندن (10 خيارات لكل فئة)
+    // 🍽️ المطاعم في لندن (10 خيارات لكل فئة) - السعر لوجبة واحدة
     restaurants: {
       budget: [
-        { id: 'lon-rest-b1', name: 'Nando\'s Peri-Peri', price: 130, cuisine: 'برتغالي', location: 'Oxford Street' },
-        { id: 'lon-rest-b2', name: 'Wagamama', price: 140, cuisine: 'آسيوي', location: 'Covent Garden' },
-        { id: 'lon-rest-b3', name: 'Leon Fast Food', price: 145, cuisine: 'صحي سريع', location: 'Liverpool Street' },
-        { id: 'lon-rest-b4', name: 'Pret A Manger', price: 149, cuisine: 'ساندويتشات', location: 'Piccadilly' },
-        { id: 'lon-rest-b5', name: 'Five Guys Burgers', price: 155, cuisine: 'برغر', location: 'Leicester Square' },
-        { id: 'lon-rest-b6', name: 'Pizza Express', price: 160, cuisine: 'إيطالي', location: 'Soho' },
-        { id: 'lon-rest-b7', name: 'Zizzi Italian', price: 165, cuisine: 'إيطالي', location: 'Camden' },
-        { id: 'lon-rest-b8', name: 'Honest Burgers', price: 170, cuisine: 'برغر', location: 'Brixton' },
-        { id: 'lon-rest-b9', name: 'The Breakfast Club', price: 175, cuisine: 'إفطار', location: 'Shoreditch' },
-        { id: 'lon-rest-b10', name: 'Busaba Thai', price: 180, cuisine: 'تايلندي', location: 'Westfield' }
+        { id: 'lon-rest-b1', name: 'Nando\'s Peri-Peri', price: 110, cuisine: 'برتغالي', location: 'Oxford Street' },
+        { id: 'lon-rest-b2', name: 'Wagamama', price: 115, cuisine: 'آسيوي', location: 'Covent Garden' },
+        { id: 'lon-rest-b3', name: 'Leon Fast Food', price: 120, cuisine: 'صحي سريع', location: 'Liverpool Street' },
+        { id: 'lon-rest-b4', name: 'Pret A Manger', price: 125, cuisine: 'ساندويتشات', location: 'Piccadilly' },
+        { id: 'lon-rest-b5', name: 'Five Guys Burgers', price: 130, cuisine: 'برغر', location: 'Leicester Square' },
+        { id: 'lon-rest-b6', name: 'Pizza Express', price: 135, cuisine: 'إيطالي', location: 'Soho' },
+        { id: 'lon-rest-b7', name: 'Zizzi Italian', price: 140, cuisine: 'إيطالي', location: 'Camden' },
+        { id: 'lon-rest-b8', name: 'Honest Burgers', price: 145, cuisine: 'برغر', location: 'Brixton' },
+        { id: 'lon-rest-b9', name: 'The Breakfast Club', price: 150, cuisine: 'إفطار', location: 'Shoreditch' },
+        { id: 'lon-rest-b10', name: 'Busaba Thai', price: 155, cuisine: 'تايلندي', location: 'Westfield' }
       ],
       midRange: [
-        { id: 'lon-rest-m1', name: 'Dishoom Bombay', price: 340, cuisine: 'هندي', location: 'Shoreditch' },
-        { id: 'lon-rest-m2', name: 'Flat Iron Steak', price: 360, cuisine: 'ستيك هاوس', location: 'Covent Garden' },
-        { id: 'lon-rest-m3', name: 'Gaucho Argentinian', price: 372, cuisine: 'أرجنتيني', location: 'Piccadilly' },
-        { id: 'lon-rest-m4', name: 'Côte Brasserie', price: 385, cuisine: 'فرنسي', location: 'Marylebone' },
-        { id: 'lon-rest-m5', name: 'Hawksmoor Steakhouse', price: 395, cuisine: 'ستيك', location: 'Guildhall' },
-        { id: 'lon-rest-m6', name: 'The Ivy Market Grill', price: 410, cuisine: 'بريطاني عصري', location: 'Covent Garden' },
-        { id: 'lon-rest-m7', name: 'Sketch Gallery', price: 425, cuisine: 'فرنسي راقي', location: 'Mayfair' },
-        { id: 'lon-rest-m8', name: 'Aqua Shard', price: 440, cuisine: 'بريطاني معاصر', location: 'The Shard' },
-        { id: 'lon-rest-m9', name: 'Chiltern Firehouse', price: 455, cuisine: 'أمريكي راقي', location: 'Marylebone' },
-        { id: 'lon-rest-m10', name: 'Sexy Fish', price: 470, cuisine: 'مأكولات بحرية', location: 'Mayfair' }
+        { id: 'lon-rest-m1', name: 'Dishoom Bombay', price: 280, cuisine: 'هندي', location: 'Shoreditch' },
+        { id: 'lon-rest-m2', name: 'Flat Iron Steak', price: 300, cuisine: 'ستيك هاوس', location: 'Covent Garden' },
+        { id: 'lon-rest-m3', name: 'Gaucho Argentinian', price: 320, cuisine: 'أرجنتيني', location: 'Piccadilly' },
+        { id: 'lon-rest-m4', name: 'Côte Brasserie', price: 340, cuisine: 'فرنسي', location: 'Marylebone' },
+        { id: 'lon-rest-m5', name: 'Hawksmoor Steakhouse', price: 360, cuisine: 'ستيك', location: 'Guildhall' },
+        { id: 'lon-rest-m6', name: 'The Ivy Market Grill', price: 380, cuisine: 'بريطاني عصري', location: 'Covent Garden' },
+        { id: 'lon-rest-m7', name: 'Sketch Gallery', price: 400, cuisine: 'فرنسي راقي', location: 'Mayfair' },
+        { id: 'lon-rest-m8', name: 'Aqua Shard', price: 420, cuisine: 'بريطاني معاصر', location: 'The Shard' },
+        { id: 'lon-rest-m9', name: 'Chiltern Firehouse', price: 440, cuisine: 'أمريكي راقي', location: 'Marylebone' },
+        { id: 'lon-rest-m10', name: 'Sexy Fish', price: 460, cuisine: 'مأكولات بحرية', location: 'Mayfair' }
       ],
       luxury: [
-        { id: 'lon-rest-l1', name: 'Gordon Ramsay Restaurant', price: 700, cuisine: 'فرنسي راقي', location: 'Chelsea', michelin: 3 },
-        { id: 'lon-rest-l2', name: 'Alain Ducasse at The Dorchester', price: 745, cuisine: 'فرنسي', location: 'Mayfair', michelin: 3 },
-        { id: 'lon-rest-l3', name: 'Core by Clare Smyth', price: 760, cuisine: 'بريطاني حديث', location: 'Notting Hill', michelin: 3 },
-        { id: 'lon-rest-l4', name: 'Dinner by Heston Blumenthal', price: 780, cuisine: 'بريطاني تاريخي', location: 'Knightsbridge', michelin: 2 },
-        { id: 'lon-rest-l5', name: 'The Ledbury', price: 800, cuisine: 'أوروبي حديث', location: 'Notting Hill', michelin: 2 },
-        { id: 'lon-rest-l6', name: 'Restaurant Story', price: 820, cuisine: 'بريطاني مبتكر', location: 'Bermondsey', michelin: 2 },
-        { id: 'lon-rest-l7', name: 'Pollen Street Social', price: 840, cuisine: 'أوروبي معاصر', location: 'Mayfair', michelin: 1 },
-        { id: 'lon-rest-l8', name: 'Hélène Darroze at The Connaught', price: 860, cuisine: 'فرنسي', location: 'Mayfair', michelin: 2 },
-        { id: 'lon-rest-l9', name: 'Club Gascon', price: 880, cuisine: 'فرنسي إقليمي', location: 'Smithfield', michelin: 1 },
-        { id: 'lon-rest-l10', name: 'Umu Japanese', price: 900, cuisine: 'ياباني راقي', location: 'Mayfair', michelin: 2 }
+        { id: 'lon-rest-l1', name: 'Gordon Ramsay Restaurant', price: 600, cuisine: 'فرنسي راقي', location: 'Chelsea', michelin: 3 },
+        { id: 'lon-rest-l2', name: 'Alain Ducasse at The Dorchester', price: 650, cuisine: 'فرنسي', location: 'Mayfair', michelin: 3 },
+        { id: 'lon-rest-l3', name: 'Core by Clare Smyth', price: 680, cuisine: 'بريطاني حديث', location: 'Notting Hill', michelin: 3 },
+        { id: 'lon-rest-l4', name: 'Dinner by Heston Blumenthal', price: 700, cuisine: 'بريطاني تاريخي', location: 'Knightsbridge', michelin: 2 },
+        { id: 'lon-rest-l5', name: 'The Ledbury', price: 730, cuisine: 'أوروبي حديث', location: 'Notting Hill', michelin: 2 },
+        { id: 'lon-rest-l6', name: 'Restaurant Story', price: 750, cuisine: 'بريطاني مبتكر', location: 'Bermondsey', michelin: 2 },
+        { id: 'lon-rest-l7', name: 'Pollen Street Social', price: 780, cuisine: 'أوروبي معاصر', location: 'Mayfair', michelin: 1 },
+        { id: 'lon-rest-l8', name: 'Hélène Darroze at The Connaught', price: 800, cuisine: 'فرنسي', location: 'Mayfair', michelin: 2 },
+        { id: 'lon-rest-l9', name: 'Club Gascon', price: 830, cuisine: 'فرنسي إقليمي', location: 'Smithfield', michelin: 1 },
+        { id: 'lon-rest-l10', name: 'Umu Japanese', price: 850, cuisine: 'ياباني راقي', location: 'Mayfair', michelin: 2 }
       ]
     },
 
@@ -90,65 +90,65 @@ export const travelCosts = {
   },
 
   paris: {
-    // 🏨 الفنادق في باريس (4 خيارات لكل فئة)
+    // 🏨 الفنادق في باريس (4 خيارات لكل فئة) - الأسعار لليلة الواحدة
     hotels: {
       budget: [
-        { id: 'par-hotel-b1', name: 'Ibis Paris Bastille', price: 235, stars: 3, location: 'Bastille' },
-        { id: 'par-hotel-b2', name: 'B&B Hotel Paris 17', price: 249, stars: 3, location: 'Batignolles' },
-        { id: 'par-hotel-b3', name: 'Campanile Paris Est', price: 255, stars: 3, location: 'Porte de Bagnolet' },
-        { id: 'par-hotel-b4', name: 'Hotel de France Invalides', price: 270, stars: 3, location: 'Invalides' }
+        { id: 'par-hotel-b1', name: 'Ibis Paris Bastille', price: 300, stars: 3, location: 'Bastille' },
+        { id: 'par-hotel-b2', name: 'B&B Hotel Paris 17', price: 330, stars: 3, location: 'Batignolles' },
+        { id: 'par-hotel-b3', name: 'Campanile Paris Est', price: 360, stars: 3, location: 'Porte de Bagnolet' },
+        { id: 'par-hotel-b4', name: 'Hotel de France Invalides', price: 400, stars: 3, location: 'Invalides' }
       ],
       midRange: [
-        { id: 'par-hotel-m1', name: 'Citadines Montmartre', price: 900, stars: 4, location: 'Montmartre' },
-        { id: 'par-hotel-m2', name: 'Novotel Paris Centre Gare Montparnasse', price: 980, stars: 4, location: 'Montparnasse' },
-        { id: 'par-hotel-m3', name: 'Mercure Paris Opera', price: 1050, stars: 4, location: 'Opera' },
-        { id: 'par-hotel-m4', name: 'Le Pavillon des Lettres', price: 1150, stars: 4, location: 'Champs-Élysées' }
+        { id: 'par-hotel-m1', name: 'Citadines Montmartre', price: 700, stars: 4, location: 'Montmartre' },
+        { id: 'par-hotel-m2', name: 'Novotel Paris Centre Gare Montparnasse', price: 800, stars: 4, location: 'Montparnasse' },
+        { id: 'par-hotel-m3', name: 'Mercure Paris Opera', price: 900, stars: 4, location: 'Opera' },
+        { id: 'par-hotel-m4', name: 'Le Pavillon des Lettres', price: 1000, stars: 4, location: 'Champs-Élysées' }
       ],
       luxury: [
-        { id: 'par-hotel-l1', name: 'Hotel Plaza Athénée', price: 2400, stars: 5, location: 'Avenue Montaigne' },
-        { id: 'par-hotel-l2', name: 'Le Meurice', price: 2550, stars: 5, location: 'Rue de Rivoli' },
-        { id: 'par-hotel-l3', name: 'Hôtel Ritz Paris', price: 2700, stars: 5, location: 'Place Vendôme' },
-        { id: 'par-hotel-l4', name: 'Four Seasons George V', price: 2900, stars: 5, location: 'Avenue George V' }
+        { id: 'par-hotel-l1', name: 'Hotel Plaza Athénée', price: 1900, stars: 5, location: 'Avenue Montaigne' },
+        { id: 'par-hotel-l2', name: 'Le Meurice', price: 2100, stars: 5, location: 'Rue de Rivoli' },
+        { id: 'par-hotel-l3', name: 'Hôtel Ritz Paris', price: 2300, stars: 5, location: 'Place Vendôme' },
+        { id: 'par-hotel-l4', name: 'Four Seasons George V', price: 2500, stars: 5, location: 'Avenue George V' }
       ]
     },
 
-    // 🍽️ المطاعم في باريس (10 خيارات لكل فئة)
+    // 🍽️ المطاعم في باريس (10 خيارات لكل فئة) - السعر لوجبة واحدة
     restaurants: {
       budget: [
-        { id: 'par-rest-b1', name: 'Breizh Café', price: 115, cuisine: 'كريب بريتوني', location: 'Marais' },
-        { id: 'par-rest-b2', name: 'L\'As du Fallafel', price: 125, cuisine: 'شرق أوسطي', location: 'Marais' },
-        { id: 'par-rest-b3', name: 'Bouillon Chartier', price: 131, cuisine: 'فرنسي تقليدي', location: 'Grands Boulevards' },
-        { id: 'par-rest-b4', name: 'Café de Flore', price: 140, cuisine: 'مقهى باريسي', location: 'Saint-Germain' },
-        { id: 'par-rest-b5', name: 'Chez Gladines', price: 145, cuisine: 'باسكي فرنسي', location: 'Butte-aux-Cailles' },
-        { id: 'par-rest-b6', name: 'Pink Mamma', price: 150, cuisine: 'إيطالي', location: 'Pigalle' },
-        { id: 'par-rest-b7', name: 'Bouillon Pigalle', price: 155, cuisine: 'فرنسي اقتصادي', location: 'Pigalle' },
-        { id: 'par-rest-b8', name: 'Le Relais de l\'Entrecôte', price: 160, cuisine: 'ستيك فرنسي', location: 'Saint-Germain' },
-        { id: 'par-rest-b9', name: 'Blend Hamburger', price: 165, cuisine: 'برغر', location: 'Marais' },
-        { id: 'par-rest-b10', name: 'Café des Musées', price: 170, cuisine: 'بيسترو فرنسي', location: 'Marais' }
+        { id: 'par-rest-b1', name: 'Breizh Café', price: 95, cuisine: 'كريب بريتوني', location: 'Marais' },
+        { id: 'par-rest-b2', name: 'L\'As du Fallafel', price: 100, cuisine: 'شرق أوسطي', location: 'Marais' },
+        { id: 'par-rest-b3', name: 'Bouillon Chartier', price: 105, cuisine: 'فرنسي تقليدي', location: 'Grands Boulevards' },
+        { id: 'par-rest-b4', name: 'Café de Flore', price: 110, cuisine: 'مقهى باريسي', location: 'Saint-Germain' },
+        { id: 'par-rest-b5', name: 'Chez Gladines', price: 120, cuisine: 'باسكي فرنسي', location: 'Butte-aux-Cailles' },
+        { id: 'par-rest-b6', name: 'Pink Mamma', price: 130, cuisine: 'إيطالي', location: 'Pigalle' },
+        { id: 'par-rest-b7', name: 'Bouillon Pigalle', price: 135, cuisine: 'فرنسي اقتصادي', location: 'Pigalle' },
+        { id: 'par-rest-b8', name: 'Le Relais de l\'Entrecôte', price: 140, cuisine: 'ستيك فرنسي', location: 'Saint-Germain' },
+        { id: 'par-rest-b9', name: 'Blend Hamburger', price: 145, cuisine: 'برغر', location: 'Marais' },
+        { id: 'par-rest-b10', name: 'Café des Musées', price: 150, cuisine: 'بيسترو فرنسي', location: 'Marais' }
       ],
       midRange: [
-        { id: 'par-rest-m1', name: 'Le Comptoir du Relais', price: 290, cuisine: 'بيسترو فرنسي', location: 'Saint-Germain' },
-        { id: 'par-rest-m2', name: 'Septime', price: 315, cuisine: 'فرنسي حديث', location: 'Charonne' },
-        { id: 'par-rest-m3', name: 'Frenchie', price: 330, cuisine: 'فرنسي معاصر', location: 'Sentier' },
-        { id: 'par-rest-m4', name: 'Le Chateaubriand', price: 350, cuisine: 'فرنسي مبتكر', location: 'Belleville' },
-        { id: 'par-rest-m5', name: 'Bistrot Paul Bert', price: 365, cuisine: 'بيسترو كلاسيكي', location: 'Bastille' },
-        { id: 'par-rest-m6', name: 'L\'Ami Jean', price: 380, cuisine: 'باسكي فرنسي', location: 'Invalides' },
-        { id: 'par-rest-m7', name: 'Le Dôme', price: 400, cuisine: 'مأكولات بحرية', location: 'Montparnasse' },
-        { id: 'par-rest-m8', name: 'Le Jules Verne (Eiffel Tower)', price: 420, cuisine: 'فرنسي راقي', location: 'Tour Eiffel' },
-        { id: 'par-rest-m9', name: 'Lasserre', price: 440, cuisine: 'فرنسي كلاسيكي', location: 'Champs-Élysées' },
-        { id: 'par-rest-m10', name: 'Le Cinq', price: 460, cuisine: 'فرنسي فاخر', location: 'George V' }
+        { id: 'par-rest-m1', name: 'Le Comptoir du Relais', price: 250, cuisine: 'بيسترو فرنسي', location: 'Saint-Germain' },
+        { id: 'par-rest-m2', name: 'Septime', price: 270, cuisine: 'فرنسي حديث', location: 'Charonne' },
+        { id: 'par-rest-m3', name: 'Frenchie', price: 290, cuisine: 'فرنسي معاصر', location: 'Sentier' },
+        { id: 'par-rest-m4', name: 'Le Chateaubriand', price: 310, cuisine: 'فرنسي مبتكر', location: 'Belleville' },
+        { id: 'par-rest-m5', name: 'Bistrot Paul Bert', price: 330, cuisine: 'بيسترو كلاسيكي', location: 'Bastille' },
+        { id: 'par-rest-m6', name: 'L\'Ami Jean', price: 350, cuisine: 'باسكي فرنسي', location: 'Invalides' },
+        { id: 'par-rest-m7', name: 'Le Dôme', price: 370, cuisine: 'مأكولات بحرية', location: 'Montparnasse' },
+        { id: 'par-rest-m8', name: 'Le Jules Verne (Eiffel Tower)', price: 390, cuisine: 'فرنسي راقي', location: 'Tour Eiffel' },
+        { id: 'par-rest-m9', name: 'Lasserre', price: 410, cuisine: 'فرنسي كلاسيكي', location: 'Champs-Élysées' },
+        { id: 'par-rest-m10', name: 'Le Cinq', price: 430, cuisine: 'فرنسي فاخر', location: 'George V' }
       ],
       luxury: [
-        { id: 'par-rest-l1', name: 'Alain Ducasse au Plaza Athénée', price: 780, cuisine: 'فرنسي راقي', location: 'Avenue Montaigne', michelin: 3 },
-        { id: 'par-rest-l2', name: 'L\'Ambroisie', price: 822, cuisine: 'فرنسي كلاسيكي', location: 'Place des Vosges', michelin: 3 },
-        { id: 'par-rest-l3', name: 'Arpège', price: 850, cuisine: 'فرنسي نباتي راقي', location: 'Invalides', michelin: 3 },
-        { id: 'par-rest-l4', name: 'Le Pré Catelan', price: 870, cuisine: 'فرنسي راقي', location: 'Bois de Boulogne', michelin: 3 },
-        { id: 'par-rest-l5', name: 'Pierre Gagnaire', price: 900, cuisine: 'فرنسي مبتكر', location: 'Champs-Élysées', michelin: 3 },
-        { id: 'par-rest-l6', name: 'Le Meurice Alain Ducasse', price: 920, cuisine: 'فرنسي قصري', location: 'Tuileries', michelin: 2 },
-        { id: 'par-rest-l7', name: 'Guy Savoy', price: 950, cuisine: 'فرنسي معاصر', location: 'Monnaie de Paris', michelin: 3 },
-        { id: 'par-rest-l8', name: 'Epicure (Le Bristol)', price: 980, cuisine: 'فرنسي راقي', location: 'Faubourg Saint-Honoré', michelin: 3 },
-        { id: 'par-rest-l9', name: 'Pavillon Ledoyen', price: 1000, cuisine: 'فرنسي تاريخي', location: 'Champs-Élysées', michelin: 3 },
-        { id: 'par-rest-l10', name: 'Kei', price: 1050, cuisine: 'فرنسي-ياباني', location: 'Louvre', michelin: 3 }
+        { id: 'par-rest-l1', name: 'Alain Ducasse au Plaza Athénée', price: 650, cuisine: 'فرنسي راقي', location: 'Avenue Montaigne', michelin: 3 },
+        { id: 'par-rest-l2', name: 'L\'Ambroisie', price: 680, cuisine: 'فرنسي كلاسيكي', location: 'Place des Vosges', michelin: 3 },
+        { id: 'par-rest-l3', name: 'Arpège', price: 700, cuisine: 'فرنسي نباتي راقي', location: 'Invalides', michelin: 3 },
+        { id: 'par-rest-l4', name: 'Le Pré Catelan', price: 730, cuisine: 'فرنسي راقي', location: 'Bois de Boulogne', michelin: 3 },
+        { id: 'par-rest-l5', name: 'Pierre Gagnaire', price: 750, cuisine: 'فرنسي مبتكر', location: 'Champs-Élysées', michelin: 3 },
+        { id: 'par-rest-l6', name: 'Le Meurice Alain Ducasse', price: 780, cuisine: 'فرنسي قصري', location: 'Tuileries', michelin: 2 },
+        { id: 'par-rest-l7', name: 'Guy Savoy', price: 800, cuisine: 'فرنسي معاصر', location: 'Monnaie de Paris', michelin: 3 },
+        { id: 'par-rest-l8', name: 'Epicure (Le Bristol)', price: 830, cuisine: 'فرنسي راقي', location: 'Faubourg Saint-Honoré', michelin: 3 },
+        { id: 'par-rest-l9', name: 'Pavillon Ledoyen', price: 850, cuisine: 'فرنسي تاريخي', location: 'Champs-Élysées', michelin: 3 },
+        { id: 'par-rest-l10', name: 'Kei', price: 900, cuisine: 'فرنسي-ياباني', location: 'Louvre', michelin: 3 }
       ]
     },
 
@@ -175,25 +175,25 @@ export const travelCosts = {
   },
 
   turkey: {
-    // 🏨 الفنادق في إسطنبول (4 خيارات لكل فئة)
+    // 🏨 الفنادق في إسطنبول (4 خيارات لكل فئة) - الأسعار لليلة الواحدة
     hotels: {
       budget: [
-        { id: 'tur-hotel-b1', name: 'Ramada Istanbul Taksim', price: 180, stars: 3, location: 'Taksim' },
-        { id: 'tur-hotel-b2', name: 'Grand Yavuz Hotel', price: 220, stars: 3, location: 'Sultanahmet' },
+        { id: 'tur-hotel-b1', name: 'Ramada Istanbul Taksim', price: 200, stars: 3, location: 'Taksim' },
+        { id: 'tur-hotel-b2', name: 'Grand Yavuz Hotel', price: 230, stars: 3, location: 'Sultanahmet' },
         { id: 'tur-hotel-b3', name: 'Best Western Citadel', price: 260, stars: 3, location: 'Beyoglu' },
-        { id: 'tur-hotel-b4', name: 'Ramada Encore', price: 300, stars: 3, location: 'Sisli' }
+        { id: 'tur-hotel-b4', name: 'Ramada Encore', price: 290, stars: 3, location: 'Sisli' }
       ],
       midRange: [
-        { id: 'tur-hotel-m1', name: 'Hilton Istanbul Bosphorus', price: 350, stars: 4, location: 'Besiktas' },
-        { id: 'tur-hotel-m2', name: 'Swissotel The Bosphorus', price: 400, stars: 4, location: 'Macka' },
-        { id: 'tur-hotel-m3', name: 'Radisson Blu Bosphorus', price: 450, stars: 4, location: 'Ortakoy' },
-        { id: 'tur-hotel-m4', name: 'Marriott Istanbul Asia', price: 500, stars: 4, location: 'Kadikoy' }
+        { id: 'tur-hotel-m1', name: 'Hilton Istanbul Bosphorus', price: 450, stars: 4, location: 'Besiktas' },
+        { id: 'tur-hotel-m2', name: 'Swissotel The Bosphorus', price: 520, stars: 4, location: 'Macka' },
+        { id: 'tur-hotel-m3', name: 'Radisson Blu Bosphorus', price: 580, stars: 4, location: 'Ortakoy' },
+        { id: 'tur-hotel-m4', name: 'Marriott Istanbul Asia', price: 650, stars: 4, location: 'Kadikoy' }
       ],
       luxury: [
-        { id: 'tur-hotel-l1', name: 'Four Seasons Sultanahmet', price: 900, stars: 5, location: 'Sultanahmet' },
-        { id: 'tur-hotel-l2', name: 'Ciragan Palace Kempinski', price: 1100, stars: 5, location: 'Besiktas' },
-        { id: 'tur-hotel-l3', name: 'The Ritz-Carlton Istanbul', price: 1300, stars: 5, location: 'Sisli' },
-        { id: 'tur-hotel-l4', name: 'Raffles Istanbul', price: 1500, stars: 5, location: 'Zorlu Center' }
+        { id: 'tur-hotel-l1', name: 'Four Seasons Sultanahmet', price: 1200, stars: 5, location: 'Sultanahmet' },
+        { id: 'tur-hotel-l2', name: 'Ciragan Palace Kempinski', price: 1500, stars: 5, location: 'Besiktas' },
+        { id: 'tur-hotel-l3', name: 'The Ritz-Carlton Istanbul', price: 1700, stars: 5, location: 'Sisli' },
+        { id: 'tur-hotel-l4', name: 'Raffles Istanbul', price: 1900, stars: 5, location: 'Zorlu Center' }
       ]
     },
 
@@ -260,25 +260,25 @@ export const travelCosts = {
   },
 
   dubai: {
-    // 🏨 الفنادق في دبي (4 خيارات لكل فئة)
+    // 🏨 الفنادق في دبي (4 خيارات لكل فئة) - الأسعار لليلة الواحدة
     hotels: {
       budget: [
-        { id: 'dub-hotel-b1', name: 'Ibis Dubai Al Barsha', price: 170, stars: 3, location: 'Al Barsha' },
-        { id: 'dub-hotel-b2', name: 'Premier Inn Dubai Ibn Battuta', price: 185, stars: 3, location: 'Ibn Battuta' },
-        { id: 'dub-hotel-b3', name: 'Rove Downtown', price: 200, stars: 3, location: 'Downtown' },
-        { id: 'dub-hotel-b4', name: 'City Max Bur Dubai', price: 215, stars: 3, location: 'Bur Dubai' }
+        { id: 'dub-hotel-b1', name: 'Ibis Dubai Al Barsha', price: 220, stars: 3, location: 'Al Barsha' },
+        { id: 'dub-hotel-b2', name: 'Premier Inn Dubai Ibn Battuta', price: 250, stars: 3, location: 'Ibn Battuta' },
+        { id: 'dub-hotel-b3', name: 'Rove Downtown', price: 280, stars: 3, location: 'Downtown' },
+        { id: 'dub-hotel-b4', name: 'City Max Bur Dubai', price: 310, stars: 3, location: 'Bur Dubai' }
       ],
       midRange: [
-        { id: 'dub-hotel-m1', name: 'Hilton Dubai Jumeirah', price: 700, stars: 4, location: 'Jumeirah Beach' },
-        { id: 'dub-hotel-m2', name: 'Marriott Al Jaddaf', price: 800, stars: 4, location: 'Al Jaddaf' },
-        { id: 'dub-hotel-m3', name: 'Radisson Blu Dubai Marina', price: 900, stars: 4, location: 'Dubai Marina' },
-        { id: 'dub-hotel-m4', name: 'JW Marriott Marquis', price: 1000, stars: 4, location: 'Business Bay' }
+        { id: 'dub-hotel-m1', name: 'Hilton Dubai Jumeirah', price: 550, stars: 4, location: 'Jumeirah Beach' },
+        { id: 'dub-hotel-m2', name: 'Marriott Al Jaddaf', price: 650, stars: 4, location: 'Al Jaddaf' },
+        { id: 'dub-hotel-m3', name: 'Radisson Blu Dubai Marina', price: 750, stars: 4, location: 'Dubai Marina' },
+        { id: 'dub-hotel-m4', name: 'JW Marriott Marquis', price: 850, stars: 4, location: 'Business Bay' }
       ],
       luxury: [
-        { id: 'dub-hotel-l1', name: 'Burj Al Arab Jumeirah', price: 3200, stars: 5, location: 'Jumeirah Beach' },
-        { id: 'dub-hotel-l2', name: 'Atlantis The Palm', price: 2500, stars: 5, location: 'Palm Jumeirah' },
-        { id: 'dub-hotel-l3', name: 'Armani Hotel Dubai', price: 2700, stars: 5, location: 'Burj Khalifa' },
-        { id: 'dub-hotel-l4', name: 'One&Only The Palm', price: 3000, stars: 5, location: 'Palm Jumeirah' }
+        { id: 'dub-hotel-l1', name: 'Burj Al Arab Jumeirah', price: 4500, stars: 5, location: 'Jumeirah Beach' },
+        { id: 'dub-hotel-l2', name: 'Atlantis The Palm', price: 2800, stars: 5, location: 'Palm Jumeirah' },
+        { id: 'dub-hotel-l3', name: 'Armani Hotel Dubai', price: 3200, stars: 5, location: 'Burj Khalifa' },
+        { id: 'dub-hotel-l4', name: 'One&Only The Palm', price: 3800, stars: 5, location: 'Palm Jumeirah' }
       ]
     },
 
@@ -345,25 +345,25 @@ export const travelCosts = {
   },
 
   egypt: {
-    // 🏨 الفنادق في القاهرة (4 خيارات لكل فئة)
+    // 🏨 الفنادق في القاهرة (4 خيارات لكل فئة) - الأسعار لليلة الواحدة
     hotels: {
       budget: [
-        { id: 'egy-hotel-b1', name: 'Steigenberger Hotel Tahrir', price: 120, stars: 3, location: 'Downtown Cairo' },
-        { id: 'egy-hotel-b2', name: 'Pyramisa Hotel Cairo', price: 150, stars: 3, location: 'Giza' },
-        { id: 'egy-hotel-b3', name: 'Le Passage Cairo Hotel', price: 180, stars: 3, location: 'Zamalek' },
-        { id: 'egy-hotel-b4', name: 'Cairo Khan Hotel', price: 220, stars: 3, location: 'Khan El Khalili' }
+        { id: 'egy-hotel-b1', name: 'Steigenberger Hotel Tahrir', price: 180, stars: 3, location: 'Downtown Cairo' },
+        { id: 'egy-hotel-b2', name: 'Pyramisa Hotel Cairo', price: 210, stars: 3, location: 'Giza' },
+        { id: 'egy-hotel-b3', name: 'Le Passage Cairo Hotel', price: 240, stars: 3, location: 'Zamalek' },
+        { id: 'egy-hotel-b4', name: 'Cairo Khan Hotel', price: 270, stars: 3, location: 'Khan El Khalili' }
       ],
       midRange: [
-        { id: 'egy-hotel-m1', name: 'Marriott Mena House', price: 300, stars: 4, location: 'Giza Pyramids' },
-        { id: 'egy-hotel-m2', name: 'Kempinski Nile Hotel', price: 350, stars: 4, location: 'Garden City' },
-        { id: 'egy-hotel-m3', name: 'InterContinental Citystars', price: 400, stars: 4, location: 'Heliopolis' },
-        { id: 'egy-hotel-m4', name: 'Fairmont Nile City', price: 450, stars: 4, location: 'Nile Corniche' }
+        { id: 'egy-hotel-m1', name: 'Marriott Mena House', price: 450, stars: 4, location: 'Giza Pyramids' },
+        { id: 'egy-hotel-m2', name: 'Kempinski Nile Hotel', price: 520, stars: 4, location: 'Garden City' },
+        { id: 'egy-hotel-m3', name: 'InterContinental Citystars', price: 580, stars: 4, location: 'Heliopolis' },
+        { id: 'egy-hotel-m4', name: 'Fairmont Nile City', price: 650, stars: 4, location: 'Nile Corniche' }
       ],
       luxury: [
-        { id: 'egy-hotel-l1', name: 'Four Seasons Nile Plaza', price: 700, stars: 5, location: 'Garden City' },
-        { id: 'egy-hotel-l2', name: 'Four Seasons First Residence', price: 850, stars: 5, location: 'Giza' },
-        { id: 'egy-hotel-l3', name: 'The Nile Ritz-Carlton', price: 950, stars: 5, location: 'Tahrir Square' },
-        { id: 'egy-hotel-l4', name: 'Sofitel Cairo Nile El Gezirah', price: 1100, stars: 5, location: 'Zamalek' }
+        { id: 'egy-hotel-l1', name: 'Four Seasons Nile Plaza', price: 1000, stars: 5, location: 'Garden City' },
+        { id: 'egy-hotel-l2', name: 'Four Seasons First Residence', price: 1200, stars: 5, location: 'Giza' },
+        { id: 'egy-hotel-l3', name: 'The Nile Ritz-Carlton', price: 1400, stars: 5, location: 'Tahrir Square' },
+        { id: 'egy-hotel-l4', name: 'Sofitel Cairo Nile El Gezirah', price: 1600, stars: 5, location: 'Zamalek' }
       ]
     },
 
